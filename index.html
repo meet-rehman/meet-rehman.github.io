@@ -94,6 +94,13 @@ h1 em{font-style:normal;color:var(--accent)}
 .iso .label{color:#4a5160;display:block;margin-bottom:14px}
 .back{display:inline-block;margin-bottom:18px;font-family:var(--mono);font-size:.8rem}
 @media(max-width:760px){.iso-grid{grid-template-columns:1fr}.iso-grid img{order:-1;max-width:420px;margin-inline:auto}}
+.jump{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:12px}
+.jump a{display:flex;flex-direction:column;gap:4px;border:1px solid var(--accent);background:var(--wash);padding:16px 18px;text-decoration:none;color:var(--ink)}
+.jump a:hover{background:var(--sheet)}
+.jump b{font-family:var(--display);font-weight:650;font-size:1.08rem;line-height:1.25}
+.jump a>span:last-child{color:var(--accent);font-size:.9rem;font-weight:600}
+.theses-strip{margin-top:clamp(28px,5vw,44px)}
+@media(max-width:760px){.jump{grid-template-columns:1fr}}
 .portrait{margin:0;border:1px solid var(--line);background:var(--sheet);padding:8px}
 .portrait img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%}
 
@@ -259,6 +266,13 @@ section[id]{scroll-margin-top:72px}
       <div><h3><span class="en">Strategy and business</span><span class="de">Strategie und Geschäft</span></h3><p><span class="en">Process modelling, stakeholder interviews, client acquisition and CRM.</span><span class="de">Prozessmodellierung, Stakeholder-Interviews, Kundenakquise und CRM.</span></p></div>
       <div><h3><span class="en">Technology</span><span class="de">Technologie</span></h3><p><span class="en">AI agents, document search, computer vision, MCP servers, geodata.</span><span class="de">KI-Agenten, Dokumentensuche, Bildverarbeitung, MCP-Server, Geodaten.</span></p></div>
       <div><h3><span class="en">Applied AI research</span><span class="de">Angewandte KI-Forschung</span></h3><p><span class="en">Benchmarks with verified answers, failure analysis, user studies.</span><span class="de">Benchmarks mit geprüften Antworten, Fehleranalyse, Nutzerstudien.</span></p></div>
+    </div>
+    <div class="theses-strip">
+      <span class="label"><span class="en">My two theses in detail</span><span class="de">Meine zwei Abschlussarbeiten im Detail</span></span>
+      <div class="jump">
+        <a href="thesis.html#msc"><span class="label">2026 · M.Sc. · <span class="en">Grade 1.1</span><span class="de">Note 1,1</span></span><b><span class="en">AI for building regulations in Stuttgart</span><span class="de">KI für Baurecht in Stuttgart</span></b><span><span class="en">Read the master's thesis</span><span class="de">Zur Masterarbeit</span> &rarr;</span></a>
+        <a href="thesis.html#barch"><span class="label">B.Arch. · <span class="en">First position</span><span class="de">Erster Platz</span></span><b><span class="en">Climate-responsive architecture for Karachi</span><span class="de">Klimagerechte Architektur für Karachi</span></b><span><span class="en">Read the bachelor's thesis</span><span class="de">Zur Bachelorarbeit</span> &rarr;</span></a>
+      </div>
     </div>
   </div>
 </section>
