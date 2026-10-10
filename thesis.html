@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Architecture thesis | Abdul Rehman</title>
+<meta name="description" content="Bachelor thesis in architecture by Abdul Rehman: climate-responsive design for a mixed-use site in Karachi.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%232443b8'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' fill='white' text-anchor='middle'%3EAR%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<style>
+@font-face{font-family:"Archivo";src:url(fonts/archivo.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:swap}
+@font-face{font-family:"IBM Plex Sans";src:url(fonts/ibm-plex-sans-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"IBM Plex Sans";src:url(fonts/ibm-plex-sans-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"IBM Plex Sans";src:url(fonts/ibm-plex-sans-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"IBM Plex Mono";src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"IBM Plex Mono";src:url(fonts/ibm-plex-mono-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
+html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+
+/* Layout: a drawing sheet. One column of content on a fine plan grid, with a title block
+   (the stamp every architectural drawing carries) as the recurring device. */
+:root{
+  --paper:#f2f4f6; --sheet:#fbfcfd; --ink:#15202b; --muted:#56636f; --line:#cdd5dc;
+  --accent:#2443b8; --accent-ink:#ffffff; --wash:#e6ebf7; --grid:rgba(36,67,184,.055);
+  --display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --gutter:clamp(16px,4vw,40px); --measure:66ch;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0f151b; --sheet:#151d25; --ink:#e7ecf1; --muted:#9aa8b5; --line:#2b3742;
+    --accent:#93a8ff; --accent-ink:#0f151b; --wash:#1b2540; --grid:rgba(147,168,255,.05);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0f151b; --sheet:#151d25; --ink:#e7ecf1; --muted:#9aa8b5; --line:#2b3742;
+  --accent:#93a8ff; --accent-ink:#0f151b; --wash:#1b2540; --grid:rgba(147,168,255,.05);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px}
+:root:not([data-lang="de"]) .de{display:none!important}
+:root[data-lang="de"] .en{display:none!important}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1120px;margin-inline:auto;padding-inline:var(--gutter)}
+.label{font-family:var(--mono);font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:20px;padding-block:12px;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:700;font-stretch:112%;letter-spacing:.01em;color:var(--ink);text-decoration:none;margin-right:auto}
+nav{display:flex;gap:18px;flex-wrap:wrap}
+nav a{color:var(--ink);text-decoration:none;font-size:.92rem}
+nav a:hover{color:var(--accent)}
+.lang{display:flex;border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.lang button{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;background:transparent;color:var(--muted);border:0;padding:6px 10px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+
+/* hero */
+.hero{padding-block:clamp(36px,7vw,84px) clamp(28px,5vw,56px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:center}
+.stack{margin:0;min-width:0}
+.stack canvas{display:block;width:100%;aspect-ratio:1/1.08}
+.stack figcaption{text-align:center;min-height:1.4em;color:var(--accent)}
+.about-photo{max-width:250px;margin-top:22px}
+h1{font-family:var(--display);font-weight:750;font-stretch:114%;font-size:clamp(1.9rem,4.4vw,3.3rem);line-height:1.08;letter-spacing:-.015em;margin:14px 0 22px;text-wrap:balance}
+h1 em{font-style:normal;color:var(--accent)}
+.lede{font-size:1.14rem;max-width:56ch;margin:0 0 26px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;font-weight:600;font-size:.95rem;text-decoration:none;padding:11px 18px;border-radius:3px;border:1px solid var(--accent)}
+.btn.solid{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{color:var(--accent);background:var(--sheet)}
+.early-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:28px}
+.early-grid figure{margin:0;border:1px solid var(--line);background:#fff;padding:6px}
+.early-grid img{display:block;width:100%;height:auto;max-height:420px;object-fit:contain}
+.early-grid figcaption,.iso figcaption{font-family:var(--mono);font-size:.7rem;color:#555;padding:6px 4px 0}
+.early-grid figure.iso{margin:0;border:1px solid var(--line);background:#fff;color:#1b1f27;padding:clamp(14px,3vw,28px)}
+.iso-grid{display:grid;grid-template-columns:1fr minmax(0,1.5fr) 1fr;gap:clamp(14px,3vw,32px);align-items:center}
+.iso-grid img{display:block;width:100%;height:auto}
+.iso dl{margin:0}
+.iso dt{font-weight:600;font-size:.95rem;margin-top:14px}
+.iso dl dt:first-child{margin-top:0}
+.iso dd{margin:2px 0 0;font-size:.85rem;line-height:1.4;color:#4a5160}
+.iso .label{color:#4a5160;display:block;margin-bottom:14px}
+.back{display:inline-block;margin-bottom:18px;font-family:var(--mono);font-size:.8rem}
+@media(max-width:760px){.iso-grid{grid-template-columns:1fr}.iso-grid img{order:-1;max-width:420px;margin-inline:auto}}
+.portrait{margin:0;border:1px solid var(--line);background:var(--sheet);padding:8px}
+.portrait img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%}
+
+/* title block */
+.stamp{margin-top:clamp(28px,5vw,48px);border:1.5px solid var(--ink);background:var(--sheet);display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.stamp div{padding:12px 14px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-width:0}
+.stamp b{display:block;font-weight:600;font-size:.98rem;line-height:1.35;margin-top:4px}
+
+/* sections */
+section{padding-block:clamp(40px,7vw,80px);border-top:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(16px,4vw,48px);margin-bottom:clamp(24px,4vw,40px)}
+h2{font-family:var(--display);font-weight:700;font-stretch:112%;font-size:clamp(1.6rem,3.4vw,2.3rem);line-height:1.1;margin:8px 0 0;text-wrap:balance}
+.sec-head>p{margin:0;max-width:var(--measure);color:var(--muted)}
+.sec-head .prose p{margin:0 0 14px}
+.sec-head .prose p:last-child{margin-bottom:0}
+h3{font-family:var(--display);font-weight:650;font-stretch:108%;font-size:1.28rem;line-height:1.2;margin:0 0 8px;text-wrap:balance}
+p{margin:0 0 14px}
+.prose{max-width:var(--measure)}
+
+/* disciplines */
+.disc{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border:1px solid var(--line);background:var(--sheet)}
+.disc div{padding:18px 16px;border-right:1px solid var(--line);min-width:0}
+.disc div:last-child{border-right:0}
+.disc h3{font-size:1.02rem}
+.disc p{font-size:.9rem;color:var(--muted);margin:0}
+
+/* work */
+.case{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:start;padding-block:clamp(22px,4vw,36px);border-top:1px solid var(--line)}
+.case:first-of-type{border-top:0;padding-top:0}
+.case figure{margin:0;border:1px solid var(--line);background:var(--sheet);padding:6px}
+.case img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top}
+.case figcaption{font-family:var(--mono);font-size:.7rem;color:var(--muted);padding:6px 4px 0}
+.case ul{margin:10px 0 16px;padding-left:18px}
+.case li{margin-bottom:6px}
+.facts{display:flex;flex-wrap:wrap;gap:8px 22px;margin:14px 0 16px;font-variant-numeric:tabular-nums}
+.facts span{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+.facts b{font-family:var(--display);font-size:1.25rem;color:var(--ink);margin-right:6px}
+.more{width:100%;border-collapse:collapse;background:var(--sheet);border:1px solid var(--line)}
+.more th,.more td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--line);font-size:.93rem}
+.more th{font-family:var(--mono);font-weight:500;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.more td:first-child{font-weight:600;min-width:13ch}
+.scroll{overflow-x:auto}
+
+/* services */
+.seek{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1.5px solid var(--ink);background:var(--sheet);margin-bottom:clamp(20px,3vw,28px)}
+.seek div{padding:14px 16px;border-right:1px solid var(--line);min-width:0}
+.seek div:last-child{border-right:0}
+.seek b{display:block;font-weight:600;font-size:.98rem;line-height:1.4;margin-top:4px}
+.svc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.svc article{background:var(--sheet);padding:clamp(18px,3vw,28px);min-width:0}
+.svc .label{display:block;margin-bottom:8px}
+.svc ul{margin:10px 0 0;padding-left:18px;font-size:.95rem}
+.svc li{margin-bottom:5px}
+
+/* two columns list */
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,5vw,64px)}
+.rows{list-style:none;margin:0;padding:0}
+.rows li{display:grid;grid-template-columns:9.5ch minmax(0,1fr);gap:14px;padding:12px 0;border-top:1px solid var(--line)}
+.rows time,.rows .when{font-family:var(--mono);font-size:.78rem;color:var(--muted);padding-top:3px}
+.rows b{display:block}
+.rows span.d{color:var(--muted);font-size:.93rem}
+
+/* contact */
+.contact{background:var(--wash)}
+.contact h2{font-size:clamp(1.8rem,4.4vw,3rem)}
+.mail{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:6px 0 0}
+#mail-addr{font-family:var(--mono);font-size:1.12rem;font-weight:500;user-select:all;overflow-wrap:anywhere;min-width:0}
+.copy{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;background:var(--sheet);color:var(--accent);border:1px solid var(--accent);border-radius:3px;padding:6px 10px;cursor:pointer}
+.links{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.legal{font-size:.92rem}
+.legal h2{font-size:1.25rem}
+.legal h3{font-size:1rem;margin-top:16px}
+.legal address{font-style:normal;margin:8px 0 12px}
+footer{border-top:1px solid var(--line);padding-block:22px;font-size:.84rem;color:var(--muted)}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
+
+@media (max-width:860px){
+  .hero-grid,.sec-head,.case,.cols{grid-template-columns:minmax(0,1fr)}
+  .stack{max-width:440px;margin-inline:auto;width:100%}
+  .stamp{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .disc{grid-template-columns:minmax(0,1fr)}
+  .disc div{border-right:0;border-bottom:1px solid var(--line)}
+  .disc div:last-child{border-bottom:0}
+  .svc{grid-template-columns:minmax(0,1fr)}
+  .seek{grid-template-columns:minmax(0,1fr)}
+  .seek div{border-right:0;border-bottom:1px solid var(--line)}
+  .seek div:last-child{border-bottom:0}
+  nav{order:3;width:100%;gap:14px}
+}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+section[id]{scroll-margin-top:72px}
+</style>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html#top">Abdul Rehman</a>
+    <nav aria-label="Sections">
+      <a href="index.html#about"><span class="en">About</span><span class="de">Über mich</span></a>
+      <a href="index.html#work"><span class="en">Work</span><span class="de">Projekte</span></a>
+      <a href="index.html#services"><span class="en">What I do</span><span class="de">Was ich mache</span></a>
+      <a href="index.html#research"><span class="en">Research</span><span class="de">Forschung</span></a>
+      <a href="index.html#contact"><span class="en">Contact</span><span class="de">Kontakt</span></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" id="lang-en" aria-pressed="true">EN</button>
+      <button type="button" id="lang-de" aria-pressed="false">DE</button>
+    </div>
+  </div>
+</header>
+<main id="top">
+<section style="border-top:0">
+  <div class="wrap">
+    <a class="back" href="index.html#about">&larr; <span class="en">Back to the main page</span><span class="de">Zurück zur Hauptseite</span></a><br>
+    <span class="label"><span class="en">Where I started</span><span class="de">Wo ich angefangen habe</span></span>
+    <h2><span class="en">Bachelor thesis in architecture: climate-responsive design for Karachi</span><span class="de">Bachelorarbeit in Architektur: klimagerechtes Entwerfen für Karachi</span></h2>
+    <div class="prose" style="margin-top:18px">
+      <p><span class="en">My B.Arch. thesis at NED University Karachi was a mixed-use site with offices, apartments and an urban farm, designed to reduce heat and energy demand through shading, daylight and materials. It also recommended changes to the city's building bye-laws. It was awarded first position at the university, and it is where my interest in building rules began.</span><span class="de">Meine B.Arch.-Abschlussarbeit an der NED University Karachi war ein gemischt genutztes Areal mit Büros, Wohnungen und einer urbanen Farm. Verschattung, Tageslicht und Materialwahl sollten Hitze und Energiebedarf senken. Die Arbeit empfahl außerdem Änderungen an den Bauvorschriften der Stadt. Sie wurde an der Universität mit dem ersten Platz ausgezeichnet, und mit ihr begann mein Interesse an Bauvorschriften.</span></p>
+      <p><span class="en">Today I work on the data side of the same question: what the rules allow on a plot, and how to check it. <a href="index.html#work">See the current work</a>.</span><span class="de">Heute arbeite ich an der Datenseite derselben Frage: was die Vorschriften auf einem Grundstück erlauben und wie sich das prüfen lässt. <a href="index.html#work">Zu den aktuellen Projekten</a>.</span></p>
+    </div>
+    <div class="early-grid">
+      <figure class="iso">
+        <span class="label"><span class="en">Office module: design details for thermal comfort</span><span class="de">Büromodul: Entwurfsdetails für thermischen Komfort</span></span>
+        <div class="iso-grid">
+          <dl><dt><span class="en">Wall U-value</span><span class="de">U-Wert der Wand</span></dt><dd><span class="en">High-performance glass and glazing.</span><span class="de">Hochleistungsglas und Verglasung.</span></dd><dt><span class="en">Infiltration</span><span class="de">Luftdichtheit</span></dt><dd><span class="en">Low air infiltration, helped by the shear walls and the structure of the building.</span><span class="de">Geringe Luftundichtheit, unterstützt durch die Schubwände und das Tragwerk.</span></dd><dt><span class="en">Illumination density</span><span class="de">Beleuchtungsdichte</span></dt><dd><span class="en">Lighting levels set for the use of the office and apartment spaces.</span><span class="de">Beleuchtungsstärken, abgestimmt auf die Nutzung der Büros und Wohnungen.</span></dd><dt><span class="en">Heat island reduction</span><span class="de">Minderung der Wärmeinsel</span></dt><dd><span class="en">Full use of the permitted floor area ratio (FAR) keeps the footprint compact and reduces the urban heat island effect.</span><span class="de">Die volle Ausnutzung der zulässigen Geschossflächenzahl hält die Grundfläche kompakt und mindert den Wärmeinseleffekt.</span></dd><dt><span class="en">Mineral paint</span><span class="de">Mineralfarbe</span></dt><dd><span class="en">Paints with a low VOC content.</span><span class="de">Farben mit geringem VOC-Gehalt.</span></dd><dt><span class="en">Responsible furniture</span><span class="de">Verantwortungsvolle Möblierung</span></dt><dd><span class="en">Certified wood with environmental statements, and finishes without VOCs.</span><span class="de">Zertifiziertes Holz mit Umwelterklärungen und Oberflächen ohne VOC.</span></dd><dt><span class="en">Porcelain floor</span><span class="de">Feinsteinzeugboden</span></dt><dd><span class="en">Contains 45% recycled material.</span><span class="de">Enthält 45 % Recyclingmaterial.</span></dd></dl>
+          <img src="img/thesis-isometric.jpg" alt="Exploded isometric of an office module" width="795" height="900">
+          <dl><dt><span class="en">Bamboo interior walls</span><span class="de">Innenwände aus Bambus</span></dt><dd><span class="en">A rapidly growing material with a growth cycle of less than 10 years.</span><span class="de">Ein schnell nachwachsender Baustoff mit einem Wachstumszyklus von unter 10 Jahren.</span></dd><dt><span class="en">Large window facade</span><span class="de">Großflächige Fensterfassade</span></dt><dd><span class="en">Openable windows that bring daylight in through the facade.</span><span class="de">Öffenbare Fenster, die Tageslicht über die Fassade ins Innere bringen.</span></dd><dt><span class="en">Brise soleil</span><span class="de">Brise Soleil</span></dt><dd><span class="en">Sun-shading devices set back 5 feet on the south-west facade reduce heat gain in hot summers.</span><span class="de">Um 5 Fuß zurückgesetzte Sonnenschutzelemente an der Südwestfassade verringern den Wärmeeintrag im heißen Sommer.</span></dd><dt><span class="en">Shear wall</span><span class="de">Schubwand</span></dt><dd><span class="en">Structural element that resists torsion in the building.</span><span class="de">Tragendes Bauteil, das Torsion im Gebäude aufnimmt.</span></dd></dl>
+        </div>
+      </figure>
+      <figure><img src="img/thesis-elevation.jpg" alt="West elevation of the office building with sun shading" loading="lazy" width="1600" height="571"><figcaption><span class="en">Office building, west elevation with sun shading</span><span class="de">Bürogebäude, Westansicht mit Sonnenschutz</span></figcaption></figure>
+      <figure><img src="img/thesis-masterplan.jpg" alt="Masterplan of the site" loading="lazy" width="1100" height="739"><figcaption><span class="en">Masterplan: offices, apartments, urban farm</span><span class="de">Masterplan: Büros, Wohnungen, urbane Farm</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Abdul Rehman, Ulm</span>
+    <span><a href="index.html#impressum">Impressum</a> · <a href="index.html#privacy"><span class="en">Privacy</span><span class="de">Datenschutz</span></a></span>
+    <span><span class="en">Geodata in project images: LGL, www.lgl-bw.de</span><span class="de">Geodaten in Projektbildern: LGL, www.lgl-bw.de</span></span>
+  </div>
+</footer>
+<script>
+(function(){
+  var root=document.documentElement, en=document.getElementById('lang-en'), de=document.getElementById('lang-de');
+  function set(l,save){
+    root.setAttribute('data-lang',l); root.setAttribute('lang',l);
+    en.setAttribute('aria-pressed',String(l==='en')); de.setAttribute('aria-pressed',String(l==='de'));
+    if(save){try{localStorage.setItem('lang',l)}catch(e){}}
+  }
+  var saved=null; try{saved=localStorage.getItem('lang')}catch(e){}
+  set(saved||((navigator.language||'en').toLowerCase().indexOf('de')===0?'de':'en'),false);
+  en.addEventListener('click',function(){set('en',true)});
+  de.addEventListener('click',function(){set('de',true)});
+})();
+</script>
+</body>
+</html>
