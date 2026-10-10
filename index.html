@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abdul Rehman | AI Engineer and Architect for AECO</title>
+<meta name="description" content="Abdul Rehman builds and evaluates AI systems for building regulations, BIM and geodata. Projects, research and CV.">
+<meta property="og:title" content="Abdul Rehman | AI Engineer and Architect for AECO">
+<meta property="og:description" content="I solve data fragmentation in regulatory compliance, BIM, 2D/3D and digital twins of the built environment.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://meet-rehman.github.io/">
+<meta property="og:image" content="https://meet-rehman.github.io/img/weissenhof.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%232443b8'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' fill='white' text-anchor='middle'%3EAR%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<style>
+@font-face{font-family:"Archivo";src:url(fonts/archivo.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:swap}
+@font-face{font-family:"IBM Plex Sans";src:url(fonts/ibm-plex-sans-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"IBM Plex Sans";src:url(fonts/ibm-plex-sans-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"IBM Plex Sans";src:url(fonts/ibm-plex-sans-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"IBM Plex Mono";src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"IBM Plex Mono";src:url(fonts/ibm-plex-mono-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
+html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+
+/* Layout: a drawing sheet. One column of content on a fine plan grid, with a title block
+   (the stamp every architectural drawing carries) as the recurring device. */
+:root{
+  --paper:#f2f4f6; --sheet:#fbfcfd; --ink:#15202b; --muted:#56636f; --line:#cdd5dc;
+  --accent:#2443b8; --accent-ink:#ffffff; --wash:#e6ebf7; --grid:rgba(36,67,184,.055);
+  --display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --gutter:clamp(16px,4vw,40px); --measure:66ch;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0f151b; --sheet:#151d25; --ink:#e7ecf1; --muted:#9aa8b5; --line:#2b3742;
+    --accent:#93a8ff; --accent-ink:#0f151b; --wash:#1b2540; --grid:rgba(147,168,255,.05);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0f151b; --sheet:#151d25; --ink:#e7ecf1; --muted:#9aa8b5; --line:#2b3742;
+  --accent:#93a8ff; --accent-ink:#0f151b; --wash:#1b2540; --grid:rgba(147,168,255,.05);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px}
+:root:not([data-lang="de"]) .de{display:none!important}
+:root[data-lang="de"] .en{display:none!important}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1120px;margin-inline:auto;padding-inline:var(--gutter)}
+.label{font-family:var(--mono);font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:20px;padding-block:12px;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:700;font-stretch:112%;letter-spacing:.01em;color:var(--ink);text-decoration:none;margin-right:auto}
+nav{display:flex;gap:18px;flex-wrap:wrap}
+nav a{color:var(--ink);text-decoration:none;font-size:.92rem}
+nav a:hover{color:var(--accent)}
+.lang{display:flex;border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.lang button{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;background:transparent;color:var(--muted);border:0;padding:6px 10px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+
+/* hero */
+.hero{padding-block:clamp(36px,7vw,84px) clamp(28px,5vw,56px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:center}
+.stack{margin:0;min-width:0}
+.stack canvas{display:block;width:100%;aspect-ratio:1/1.08}
+.stack figcaption{text-align:center;min-height:1.4em;color:var(--accent)}
+.about-photo{max-width:250px;margin-top:22px}
+h1{font-family:var(--display);font-weight:750;font-stretch:114%;font-size:clamp(1.9rem,4.4vw,3.3rem);line-height:1.08;letter-spacing:-.015em;margin:14px 0 22px;text-wrap:balance}
+h1 em{font-style:normal;color:var(--accent)}
+.lede{font-size:1.14rem;max-width:56ch;margin:0 0 26px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;font-weight:600;font-size:.95rem;text-decoration:none;padding:11px 18px;border-radius:3px;border:1px solid var(--accent)}
+.btn.solid{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{color:var(--accent);background:var(--sheet)}
+.portrait{margin:0;border:1px solid var(--line);background:var(--sheet);padding:8px}
+.portrait img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%}
+
+/* title block */
+.stamp{margin-top:clamp(28px,5vw,48px);border:1.5px solid var(--ink);background:var(--sheet);display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.stamp div{padding:12px 14px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-width:0}
+.stamp b{display:block;font-weight:600;font-size:.98rem;line-height:1.35;margin-top:4px}
+
+/* sections */
+section{padding-block:clamp(40px,7vw,80px);border-top:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(16px,4vw,48px);margin-bottom:clamp(24px,4vw,40px)}
+h2{font-family:var(--display);font-weight:700;font-stretch:112%;font-size:clamp(1.6rem,3.4vw,2.3rem);line-height:1.1;margin:8px 0 0;text-wrap:balance}
+.sec-head>p{margin:0;max-width:var(--measure);color:var(--muted)}
+.sec-head .prose p{margin:0 0 14px}
+.sec-head .prose p:last-child{margin-bottom:0}
+h3{font-family:var(--display);font-weight:650;font-stretch:108%;font-size:1.28rem;line-height:1.2;margin:0 0 8px;text-wrap:balance}
+p{margin:0 0 14px}
+.prose{max-width:var(--measure)}
+
+/* disciplines */
+.disc{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border:1px solid var(--line);background:var(--sheet)}
+.disc div{padding:18px 16px;border-right:1px solid var(--line);min-width:0}
+.disc div:last-child{border-right:0}
+.disc h3{font-size:1.02rem}
+.disc p{font-size:.9rem;color:var(--muted);margin:0}
+
+/* work */
+.case{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:start;padding-block:clamp(22px,4vw,36px);border-top:1px solid var(--line)}
+.case:first-of-type{border-top:0;padding-top:0}
+.case figure{margin:0;border:1px solid var(--line);background:var(--sheet);padding:6px}
+.case img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top}
+.case figcaption{font-family:var(--mono);font-size:.7rem;color:var(--muted);padding:6px 4px 0}
+.case ul{margin:10px 0 16px;padding-left:18px}
+.case li{margin-bottom:6px}
+.facts{display:flex;flex-wrap:wrap;gap:8px 22px;margin:14px 0 16px;font-variant-numeric:tabular-nums}
+.facts span{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+.facts b{font-family:var(--display);font-size:1.25rem;color:var(--ink);margin-right:6px}
+.more{width:100%;border-collapse:collapse;background:var(--sheet);border:1px solid var(--line)}
+.more th,.more td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--line);font-size:.93rem}
+.more th{font-family:var(--mono);font-weight:500;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.more td:first-child{font-weight:600;min-width:13ch}
+.scroll{overflow-x:auto}
+
+/* services */
+.seek{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1.5px solid var(--ink);background:var(--sheet);margin-bottom:clamp(20px,3vw,28px)}
+.seek div{padding:14px 16px;border-right:1px solid var(--line);min-width:0}
+.seek div:last-child{border-right:0}
+.seek b{display:block;font-weight:600;font-size:.98rem;line-height:1.4;margin-top:4px}
+.svc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.svc article{background:var(--sheet);padding:clamp(18px,3vw,28px);min-width:0}
+.svc .label{display:block;margin-bottom:8px}
+.svc ul{margin:10px 0 0;padding-left:18px;font-size:.95rem}
+.svc li{margin-bottom:5px}
+
+/* two columns list */
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,5vw,64px)}
+.rows{list-style:none;margin:0;padding:0}
+.rows li{display:grid;grid-template-columns:9.5ch minmax(0,1fr);gap:14px;padding:12px 0;border-top:1px solid var(--line)}
+.rows time,.rows .when{font-family:var(--mono);font-size:.78rem;color:var(--muted);padding-top:3px}
+.rows b{display:block}
+.rows span.d{color:var(--muted);font-size:.93rem}
+
+/* contact */
+.contact{background:var(--wash)}
+.contact h2{font-size:clamp(1.8rem,4.4vw,3rem)}
+.mail{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:6px 0 0}
+#mail-addr{font-family:var(--mono);font-size:1.12rem;font-weight:500;user-select:all;overflow-wrap:anywhere;min-width:0}
+.copy{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;background:var(--sheet);color:var(--accent);border:1px solid var(--accent);border-radius:3px;padding:6px 10px;cursor:pointer}
+.links{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.legal{font-size:.92rem}
+.legal h2{font-size:1.25rem}
+.legal h3{font-size:1rem;margin-top:16px}
+.legal address{font-style:normal;margin:8px 0 12px}
+footer{border-top:1px solid var(--line);padding-block:22px;font-size:.84rem;color:var(--muted)}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
+
+@media (max-width:860px){
+  .hero-grid,.sec-head,.case,.cols{grid-template-columns:minmax(0,1fr)}
+  .stack{max-width:440px;margin-inline:auto;width:100%}
+  .stamp{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .disc{grid-template-columns:minmax(0,1fr)}
+  .disc div{border-right:0;border-bottom:1px solid var(--line)}
+  .disc div:last-child{border-bottom:0}
+  .svc{grid-template-columns:minmax(0,1fr)}
+  .seek{grid-template-columns:minmax(0,1fr)}
+  .seek div{border-right:0;border-bottom:1px solid var(--line)}
+  .seek div:last-child{border-bottom:0}
+  nav{order:3;width:100%;gap:14px}
+}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+section[id]{scroll-margin-top:72px}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">Abdul Rehman</a>
+    <nav aria-label="Sections">
+      <a href="#about"><span class="en">About</span><span class="de">Über mich</span></a>
+      <a href="#work"><span class="en">Work</span><span class="de">Projekte</span></a>
+      <a href="#services"><span class="en">What I do</span><span class="de">Was ich mache</span></a>
+      <a href="#research"><span class="en">Research</span><span class="de">Forschung</span></a>
+      <a href="#contact"><span class="en">Contact</span><span class="de">Kontakt</span></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" id="lang-en" aria-pressed="true">EN</button>
+      <button type="button" id="lang-de" aria-pressed="false">DE</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<div class="wrap hero">
+  <div class="hero-grid">
+    <div>
+      <span class="label"><span class="en">AI Engineer and Architect for AECO</span><span class="de">AI Engineer mit Architekturausbildung für AECO</span></span>
+      <h1>
+        <span class="en">I solve <em>data fragmentation</em> in regulatory compliance, BIM, 2D/3D and digital twins of the built environment.</span>
+        <span class="de">Ich löse <em>Datenfragmentierung</em> in Regulatorik, BIM, 2D/3D und digitalen Zwillingen der gebauten Umwelt.</span>
+      </h1>
+      <p class="lede">
+        <span class="en">Regulations, plans, cadastral records and building models describe the same plot, but they sit in different offices, formats and systems. I build AI systems that bring them together, and I test them until it is clear where they fail.</span>
+        <span class="de">Vorschriften, Pläne, Katasterdaten und Gebäudemodelle beschreiben dasselbe Grundstück, liegen aber in verschiedenen Ämtern, Formaten und Systemen. Ich entwickle KI-Systeme, die sie zusammenführen, und teste sie, bis klar ist, wo sie versagen.</span>
+      </p>
+      <div class="cta">
+        <a class="btn solid" href="#services"><span class="en">What I do</span><span class="de">Was ich mache</span></a>
+        <a class="btn ghost" href="#work"><span class="en">See the projects</span><span class="de">Projekte ansehen</span></a>
+      </div>
+    </div>
+    <figure class="stack">
+      <canvas id="stack" role="img" aria-label="Four data layers of one plot (law, plan, cadastre, model) drift apart and then align on the same parcel"></canvas>
+      <figcaption id="stack-cap" class="label" aria-hidden="true"></figcaption>
+    </figure>
+  </div>
+
+  <div class="stamp" aria-label="Profile summary">
+    <div><span class="label"><span class="en">Based in</span><span class="de">Standort</span></span><b><span class="en">Ulm, Germany</span><span class="de">Ulm, Deutschland</span></b></div>
+    <div><span class="label"><span class="en">Training</span><span class="de">Ausbildung</span></span><b><span class="en">Architect (B.Arch), M.Sc. 2026</span><span class="de">Architekturstudium (B.Arch), M.Sc. 2026</span></b></div>
+    <div><span class="label"><span class="en">Thesis grade</span><span class="de">Note der Masterarbeit</span></span><b><span class="en">1.1, very good (German scale)</span><span class="de">1,1 (sehr gut)</span></b></div>
+    <div><span class="label"><span class="en">Fields</span><span class="de">Felder</span></span><b><span class="en">Building law, BIM, geodata, AI</span><span class="de">Baurecht, BIM, Geodaten, KI</span></b></div>
+    <div><span class="label"><span class="en">Practice</span><span class="de">Praxis</span></span><b><span class="en">3 years in architecture and business development</span><span class="de">3 Jahre Architektur und Business Development</span></b></div>
+    <div><span class="label"><span class="en">Talks</span><span class="de">Vorträge</span></span><b>DBP26, OGC iDays 2026</b></div>
+    <div><span class="label"><span class="en">Method</span><span class="de">Methode</span></span><b><span class="en">Process first, then the model</span><span class="de">Erst der Prozess, dann das Modell</span></b></div>
+    <div><span class="label"><span class="en">Open to</span><span class="de">Offen für</span></span><b><span class="en">Roles, doctoral research, freelance projects</span><span class="de">Stellen, Promotion, freie Projekte</span></b></div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="label"><span class="en">About</span><span class="de">Über mich</span></span>
+        <h2><span class="en">An architect who moved to the other side of the permit desk</span><span class="de">Vom Architekturbüro auf die andere Seite des Bauantrags</span></h2>
+        <figure class="portrait about-photo"><img src="img/abdul-rehman.jpg" alt="Portrait of Abdul Rehman" width="720" height="900"></figure></div>
+      <div class="prose">
+        <p><span class="en">I trained and worked as an architect. In practice I saw how much time goes into finding out what may be built on a plot. The answer exists, but it is spread over federal law, state law, the municipal plan and the cadastre.</span><span class="de">Ich habe Architektur studiert und in einem Architekturbüro gearbeitet. In der Praxis habe ich gesehen, wie viel Zeit die Frage kostet, was auf einem Grundstück gebaut werden darf. Die Antwort existiert, aber sie verteilt sich auf Bundesrecht, Landesrecht, den Bebauungsplan und das Kataster.</span></p>
+        <p><span class="en">After that I built up client acquisition for a US architecture firm, and then completed an M.Sc. in Sustainable Mobilities at HfWU Nürtingen-Geislingen. My thesis was an AI system for building regulation questions in Stuttgart, with a benchmark that shows how often each part of it is right.</span><span class="de">Danach habe ich für ein US-amerikanisches Architekturbüro die Kundenakquise aufgebaut und anschließend den M.Sc. Sustainable Mobilities an der HfWU Nürtingen-Geislingen abgeschlossen. Meine Masterarbeit war ein KI-System für baurechtliche Fragen in Stuttgart, mit einem Benchmark, der zeigt, wie oft jeder Teil davon richtig liegt.</span></p>
+        <p><span class="en">My view: trustworthy AI for regulated fields will come from systems that check each other against official sources, and that are tested until we know exactly where they fail.</span><span class="de">Meine Überzeugung: Vertrauenswürdige KI für regulierte Bereiche entsteht aus Systemen, die sich gegenseitig an amtlichen Quellen prüfen und so lange getestet werden, bis genau bekannt ist, wo sie versagen.</span></p>
+      </div>
+    </div>
+    <div class="disc">
+      <div><h3><span class="en">Law and compliance</span><span class="de">Recht und Compliance</span></h3><p><span class="en">German planning and building law. EU AI Act, GDPR and governance frameworks.</span><span class="de">Deutsches Planungs- und Baurecht. EU AI Act, DSGVO und Governance-Rahmenwerke.</span></p></div>
+      <div><h3><span class="en">Architecture and planning</span><span class="de">Architektur und Planung</span></h3><p><span class="en">Design practice, permitting, zoning plans, BIM and IFC.</span><span class="de">Entwurfspraxis, Genehmigung, Bebauungspläne, BIM und IFC.</span></p></div>
+      <div><h3><span class="en">Strategy and business</span><span class="de">Strategie und Geschäft</span></h3><p><span class="en">Process modelling, stakeholder interviews, client acquisition and CRM.</span><span class="de">Prozessmodellierung, Stakeholder-Interviews, Kundenakquise und CRM.</span></p></div>
+      <div><h3><span class="en">Technology</span><span class="de">Technologie</span></h3><p><span class="en">AI agents, document search, computer vision, MCP servers, geodata.</span><span class="de">KI-Agenten, Dokumentensuche, Bildverarbeitung, MCP-Server, Geodaten.</span></p></div>
+      <div><h3><span class="en">Applied AI research</span><span class="de">Angewandte KI-Forschung</span></h3><p><span class="en">Benchmarks with verified answers, failure analysis, user studies.</span><span class="de">Benchmarks mit geprüften Antworten, Fehleranalyse, Nutzerstudien.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="label"><span class="en">Selected work</span><span class="de">Ausgewählte Projekte</span></span>
+        <h2><span class="en">Three projects, each with its failures on the table</span><span class="de">Drei Projekte, jeweils mit offengelegten Schwächen</span></h2></div>
+      <p><span class="en">Every project page states what worked, what did not, and what I would not trust. The full write-ups are on GitHub.</span><span class="de">Jede Projektseite nennt, was funktioniert hat, was nicht, und worauf ich mich nicht verlassen würde. Die ausführlichen Berichte liegen auf GitHub.</span></p>
+    </div>
+
+    <article class="case">
+      <figure><img src="img/stuttgart.jpg" alt="Interface of the Stuttgart building regulations assistant" loading="lazy"><figcaption><span class="en">Interface of the deployed text layer</span><span class="de">Oberfläche der eingesetzten Textebene</span></figcaption></figure>
+      <div>
+        <span class="label"><span class="en">M.Sc. thesis, 2026</span><span class="de">Masterarbeit, 2026</span></span>
+        <h3><span class="en">AI for digital building permitting in Stuttgart</span><span class="de">KI für die digitale Baugenehmigung in Stuttgart</span></h3>
+        <p><span class="en">One question, answered from three independent sources: the regulation text, the zoning plan drawing and the official cadastre. Where the three disagree, the system shows no value.</span><span class="de">Eine Frage, beantwortet aus drei unabhängigen Quellen: dem Vorschriftentext, der Planzeichnung des Bebauungsplans und dem amtlichen Kataster. Wo die drei sich widersprechen, zeigt das System keinen Wert an.</span></p>
+        <div class="facts"><span><b>12,701</b><span class="en">text passages</span><span class="de">Textabschnitte</span></span><span><b>55</b><span class="en">study participants</span><span class="de">Studienteilnehmende</span></span><span><b>25</b><span class="en">benchmark questions</span><span class="de">Benchmark-Fragen</span></span></div>
+        <ul>
+          <li><span class="en">The process was checked with Stuttgart's building law office and city planning office.</span><span class="de">Der Prozess wurde mit dem Baurechtsamt und dem Stadtplanungsamt Stuttgart abgestimmt.</span></li>
+          <li><span class="en">Main finding: no single source is reliable enough alone, and they fail in different ways.</span><span class="de">Zentrales Ergebnis: Keine Quelle ist allein verlässlich genug, und sie versagen auf unterschiedliche Weise.</span></li>
+          <li><span class="en">Still open: an off-topic answer on 32% of a wider sample of questions.</span><span class="de">Noch offen: eine themenfremde Antwort bei 32 % einer größeren Stichprobe von Fragen.</span></li>
+        </ul>
+        <a href="https://github.com/meet-rehman/digital-building-permit-stuttgart"><span class="en">Results and failure analysis</span><span class="de">Ergebnisse und Fehleranalyse</span></a>
+      </div>
+    </article>
+
+    <article class="case">
+      <figure><img src="img/weissenhof.jpg" alt="3D scene of the Weissenhof estate built from open data" loading="lazy"><figcaption>Datenquelle: LGL, www.lgl-bw.de</figcaption></figure>
+      <div>
+        <span class="label"><span class="en">Case study, 2026</span><span class="de">Fallstudie, 2026</span></span>
+        <h3><span class="en">Do official geodatasets agree with each other?</span><span class="de">Stimmen amtliche Geodaten miteinander überein?</span></h3>
+        <p><span class="en">The Weissenhof estate in Stuttgart, rebuilt from open data of the state survey office: cadastre, 3D buildings, terrain and aerial photo. An AI agent working in Blender wrote and ran the checks under my direction.</span><span class="de">Die Weissenhofsiedlung in Stuttgart, aufgebaut aus offenen Daten des Landesamts: Kataster, 3D-Gebäude, Gelände und Luftbild. Ein KI-Agent in Blender hat die Prüfungen nach meinen Vorgaben geschrieben und ausgeführt.</span></p>
+        <div class="facts"><span><b>69/69</b><span class="en">footprints match</span><span class="de">Grundrisse stimmen</span></span><span><b>3.4 cm</b><span class="en">largest gap</span><span class="de">größte Abweichung</span></span></div>
+        <ul>
+          <li><span class="en">The 3D model gives Le Corbusier's flat-roofed double house two gable roofs.</span><span class="de">Das 3D-Modell gibt dem Doppelhaus von Le Corbusier mit Flachdach zwei Satteldächer.</span></li>
+          <li><span class="en">The aerial photo shows a cleared plot. Three datasets still list a building there.</span><span class="de">Das Luftbild zeigt ein geräumtes Grundstück. Drei Datensätze führen dort weiterhin ein Gebäude.</span></li>
+        </ul>
+        <a href="https://github.com/meet-rehman/geodata-ai-integration"><span class="en">Method, renders and scripts</span><span class="de">Methode, Renderings und Skripte</span></a>
+      </div>
+    </article>
+
+    <article class="case">
+      <figure><img src="img/revit.jpg" alt="Claude answering a question about a Revit model" loading="lazy"><figcaption><span class="en">Door count on Level 1, read from the live model</span><span class="de">Türanzahl im Erdgeschoss, aus dem laufenden Modell gelesen</span></figcaption></figure>
+      <div>
+        <span class="label"><span class="en">Case study, 2026</span><span class="de">Fallstudie, 2026</span></span>
+        <h3><span class="en">Asking a Revit model questions in plain language</span><span class="de">Ein Revit-Modell in Alltagssprache befragen</span></h3>
+        <p><span class="en">An AI assistant connected to a live Revit model. I tested what an architecture office could use today and what it should leave alone.</span><span class="de">Ein KI-Assistent, verbunden mit einem laufenden Revit-Modell. Ich habe getestet, was ein Architekturbüro heute nutzen kann und wovon es die Finger lassen sollte.</span></p>
+        <ul>
+          <li><span class="en">Worked: counts, areas, unit conversion and an element report for a client.</span><span class="de">Funktioniert: Stückzahlen, Flächen, Einheitenumrechnung und ein Bauteilbericht für den Bauherrn.</span></li>
+          <li><span class="en">Not to be trusted: two cost estimates for the same floor differed by a factor of two.</span><span class="de">Nicht verlässlich: Zwei Kostenschätzungen für dasselbe Geschoss unterschieden sich um den Faktor zwei.</span></li>
+        </ul>
+        <a href="https://github.com/meet-rehman/revit-mcp-case-study"><span class="en">Full case study</span><span class="de">Vollständige Fallstudie</span></a>
+      </div>
+    </article>
+
+    <h3 style="margin-top:clamp(28px,5vw,48px);margin-bottom:14px"><span class="en">More projects</span><span class="de">Weitere Projekte</span></h3>
+    <div class="scroll">
+    <table class="more">
+      <thead><tr><th><span class="en">Project</span><span class="de">Projekt</span></th><th><span class="en">What it is</span><span class="de">Worum es geht</span></th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://github.com/meet-rehman/vcoo-compliance-mcp">vCOO</a></td><td><span class="en">A virtual compliance officer for people who build products with no-code and AI tools. Five servers for EU AI Act, GDPR, ISO 27001, COBIT and NIST, and a scripted prototype.</span><span class="de">Ein virtueller Compliance-Beauftragter für Menschen, die Produkte mit No-Code- und KI-Werkzeugen bauen. Fünf Server für EU AI Act, DSGVO, ISO 27001, COBIT und NIST sowie ein Prototyp mit festem Ablauf.</span></td></tr>
+        <tr><td><a href="https://github.com/meet-rehman/ifc-compliance-mcp"><span class="en">IFC compliance check</span><span class="de">IFC-Prüfung</span></a></td><td><span class="en">A tool that compares the built coverage of a plot with the limit an AI system states. It showed from outside that the system was filling in limits it had not found.</span><span class="de">Ein Werkzeug, das die überbaute Fläche eines Grundstücks mit dem Grenzwert vergleicht, den ein KI-System nennt. Es zeigte von außen, dass das System Grenzwerte einsetzte, die es nicht gefunden hatte.</span></td></tr>
+        <tr><td><a href="https://github.com/meet-rehman/regulation-knowledge-graph"><span class="en">Governance graph</span><span class="de">Governance-Graph</span></a></td><td><span class="en">Conceptual work: which building rule overrides which, across federal, state and municipal law.</span><span class="de">Konzeptarbeit: Welche Bauvorschrift geht welcher vor, über Bundes-, Landes- und Kommunalrecht hinweg.</span></td></tr>
+        <tr><td><a href="https://github.com/meet-rehman/kbob-embodied-carbon"><span class="en">Embodied carbon prototype</span><span class="de">Prototyp graue Energie</span></a></td><td><span class="en">Material descriptions in plain language matched to Swiss life cycle data, with its errors documented and corrected.</span><span class="de">Materialbeschreibungen in Alltagssprache, zugeordnet zu Schweizer Ökobilanzdaten, mit dokumentierten und korrigierten Fehlern.</span></td></tr>
+        <tr><td><a href="https://github.com/meet-rehman/python-ai-for-real-estate"><span class="en">Teaching notebooks</span><span class="de">Lehrmaterial</span></a></td><td><span class="en">A four-module Python and AI course for business and real estate students at HfWU, where I also assisted in class.</span><span class="de">Ein Python- und KI-Kurs in vier Modulen für Studierende der Betriebs- und Immobilienwirtschaft an der HfWU, bei dem ich auch im Unterricht unterstützt habe.</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="label"><span class="en">What I do</span><span class="de">Was ich mache</span></span>
+        <h2><span class="en">Four directions, in a team or on a project</span><span class="de">Vier Richtungen, im Team oder im Projekt</span></h2></div>
+      <p><span class="en">I am open to a permanent role, to doctoral research and to selected project work. These are the four directions where I contribute most. If AI is not the right tool for a problem, I say so.</span><span class="de">Ich bin offen für eine Festanstellung, für eine Promotion und für ausgewählte Projektarbeit. In diesen vier Richtungen kann ich am meisten beitragen. Wenn KI für ein Problem nicht das richtige Werkzeug ist, sage ich das offen.</span></p>
+    </div>
+    <div class="seek">
+      <div><span class="label"><span class="en">Looking for</span><span class="de">Ich suche</span></span><b><span class="en">AI engineering and applied research roles in AEC, GovTech and PropTech, or a doctoral position</span><span class="de">Stellen in KI-Entwicklung und angewandter Forschung in Bauwesen, GovTech und PropTech oder eine Promotionsstelle</span></b></div>
+      <div><span class="label"><span class="en">Evidence</span><span class="de">Belege</span></span><b><span class="en">Thesis graded 1.1, "very good" on the German scale. Two accepted conference contributions in 2026. Nine documented projects</span><span class="de">Masterarbeit mit 1,1 (sehr gut) bewertet. Zwei angenommene Konferenzbeiträge 2026. Neun dokumentierte Projekte</span></b></div>
+      <div><span class="label"><span class="en">Next step</span><span class="de">Nächster Schritt</span></span><b><a class="en" href="cv/Abdul-Rehman-CV-EN.pdf" target="_blank" rel="noopener">Open the CV (PDF)</a><a class="de" href="cv/Abdul-Rehman-Lebenslauf-DE.pdf" target="_blank" rel="noopener">Lebenslauf öffnen (PDF)</a><span class="en"> or </span><span class="de"> oder </span><a href="#contact"><span class="en">get in touch</span><span class="de">Kontakt aufnehmen</span></a></b></div>
+    </div>
+    <div class="svc">
+      <article>
+        <span class="label"><span class="en">Architecture and planning offices</span><span class="de">Architektur- und Planungsbüros</span></span>
+        <h3><span class="en">AI agents in architecture practice</span><span class="de">KI-Agenten in der Architekturpraxis</span></h3>
+        <p><span class="en">I have worked as an architect, so I start from how an office actually runs a project.</span><span class="de">Ich habe in der Architekturpraxis gearbeitet und beginne deshalb dort, wo ein Büro ein Projekt tatsächlich abwickelt.</span></p>
+        <ul>
+          <li><span class="en">Practice audit: where agents save real hours, and where they only add risk</span><span class="de">Büro-Audit: wo Agenten echte Stunden sparen und wo sie nur Risiko bringen</span></li>
+          <li><span class="en">Questions to your Revit or IFC model in plain language</span><span class="de">Fragen an Ihr Revit- oder IFC-Modell in Alltagssprache</span></li>
+          <li><span class="en">Site and context models from official open data</span><span class="de">Lage- und Umgebungsmodelle aus amtlichen offenen Daten</span></li>
+          <li><span class="en">Workshops on Python and AI for people without a technical background</span><span class="de">Workshops zu Python und KI für Menschen ohne technischen Hintergrund</span></li>
+        </ul>
+      </article>
+      <article>
+        <span class="label"><span class="en">Companies, research groups, public bodies</span><span class="de">Unternehmen, Forschungsgruppen, öffentliche Stellen</span></span>
+        <h3><span class="en">Evaluation of AI systems</span><span class="de">Evaluation von KI-Systemen</span></h3>
+        <p><span class="en">For a team that has an AI system or plans one. I find out how often it is right, and why it is wrong when it is.</span><span class="de">Für Teams, die ein KI-System haben oder planen. Ich finde heraus, wie oft es richtig liegt und warum es falsch liegt, wenn es das tut.</span></p>
+        <ul>
+          <li><span class="en">A test set with verified answers, scored results, and a failure report</span><span class="de">Ein Testsatz mit geprüften Antworten, bewertete Ergebnisse und ein Fehlerbericht</span></li>
+          <li><span class="en">Feasibility study on your own documents before you commit to building</span><span class="de">Machbarkeitsstudie an Ihren eigenen Dokumenten, bevor Sie in die Entwicklung gehen</span></li>
+          <li><span class="en">Models or methods compared side by side on your use case</span><span class="de">Modelle oder Methoden im direkten Vergleich an Ihrem Anwendungsfall</span></li>
+        </ul>
+      </article>
+      <article>
+        <span class="label"><span class="en">Engineering offices, public bodies, PropTech</span><span class="de">Ingenieurbüros, öffentliche Stellen, PropTech</span></span>
+        <h3><span class="en">AI for regulations and geodata</span><span class="de">KI für Vorschriften und Geodaten</span></h3>
+        <p><span class="en">From the first process map to a working assistant that names its sources.</span><span class="de">Von der ersten Prozessaufnahme bis zum funktionierenden Assistenten, der seine Quellen nennt.</span></p>
+        <ul>
+          <li><span class="en">Scoping: mapping the current process and where AI helps in it</span><span class="de">Klärung: Aufnahme des heutigen Prozesses und wo KI darin hilft</span></li>
+          <li><span class="en">Assistants for building codes, standards or internal documents</span><span class="de">Assistenten für Bauvorschriften, Normen oder interne Dokumente</span></li>
+          <li><span class="en">Reading zoning plans and linking them to cadastral and building data</span><span class="de">Auslesen von Bebauungsplänen und Verknüpfung mit Kataster- und Gebäudedaten</span></li>
+          <li><span class="en">A first map of an AI product against the EU AI Act and GDPR (a research aid, not legal advice)</span><span class="de">Eine erste Einordnung eines KI-Produkts nach EU AI Act und DSGVO (Recherchehilfe, keine Rechtsberatung)</span></li>
+        </ul>
+      </article>
+      <article>
+        <span class="label"><span class="en">AEC firms and small teams</span><span class="de">Büros der Baubranche und kleine Teams</span></span>
+        <h3><span class="en">Automation for business development</span><span class="de">Automatisierung für die Akquise</span></h3>
+        <p><span class="en">I have done client acquisition for an architecture firm myself, so I know the workflow before I automate it.</span><span class="de">Ich habe selbst Kundenakquise für ein Architekturbüro gemacht und kenne den Ablauf, bevor ich ihn automatisiere.</span></p>
+        <ul>
+          <li><span class="en">Lead and CRM workflows with reporting</span><span class="de">Lead- und CRM-Abläufe mit Auswertung</span></li>
+          <li><span class="en">Content pipelines: an agent drafts, a person approves, then it is published</span><span class="de">Content-Abläufe: Ein Agent entwirft, ein Mensch gibt frei, dann wird veröffentlicht</span></li>
+          <li><span class="en">Internal assistants connected to the tools your team already uses</span><span class="de">Interne Assistenten, angebunden an die Werkzeuge, die Ihr Team bereits nutzt</span></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="research">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <span class="label"><span class="en">Research and talks</span><span class="de">Forschung und Vorträge</span></span>
+        <h2 style="margin-bottom:18px"><span class="en">Research</span><span class="de">Forschung</span></h2>
+        <ul class="rows">
+          <li><span class="when">Nov 2026</span><div><b>DBP26, <span class="en">Munich</span><span class="de">München</span></b><span class="d"><span class="en">Poster on the Stuttgart system for multi-level building governance</span><span class="de">Poster zum Stuttgarter System für die Bau-Governance über mehrere Ebenen</span></span></div></li>
+          <li><span class="when">Nov 2026</span><div><b>OGC iDays 2026, <span class="en">Munich</span><span class="de">München</span></b><span class="d"><span class="en">Accepted presentation</span><span class="de">Angenommener Vortrag</span></span></div></li>
+          <li><span class="when">2026</span><div><b><span class="en">M.Sc. thesis, HfWU</span><span class="de">Masterarbeit, HfWU</span></b><span class="d"><span class="en">AI-assisted regulatory intelligence for built environment professionals. Graded 1.1, "sehr gut" (very good). On the German scale 1.0 is the best grade</span><span class="de">KI-gestützte Regulierungsintelligenz für Fachleute der gebauten Umwelt. Bewertet mit 1,1 (sehr gut)</span></span></div></li>
+          <li><span class="when"><span class="en">In prep.</span><span class="de">In Arbeit</span></span><div><b><span class="en">Journal paper</span><span class="de">Zeitschriftenartikel</span></b><span class="d"><span class="en">On the evaluation of the Stuttgart system</span><span class="de">Zur Evaluation des Stuttgarter Systems</span></span></div></li>
+          <li><span class="when"><span class="en">In prep.</span><span class="de">In Arbeit</span></span><div><b>Whitepaper</b><span class="d"><span class="en">Eight AI use cases for the built environment, each with what works and what does not, with a university partner</span><span class="de">Acht KI-Anwendungsfälle für die gebaute Umwelt, jeweils mit dem, was funktioniert und was nicht, mit einem Hochschulpartner</span></span></div></li>
+        </ul>
+      </div>
+      <div>
+        <span class="label"><span class="en">Experience</span><span class="de">Berufserfahrung</span></span>
+        <h2 style="margin-bottom:18px"><span class="en">Experience</span><span class="de">Erfahrung</span></h2>
+        <ul class="rows">
+          <li><span class="when">2025-2026</span><div><b><span class="en">Research assistant, HfWU</span><span class="de">Wissenschaftliche Hilfskraft, HfWU</span></b><span class="d"><span class="en">Compliance knowledge tools and teaching material for a Python and AI course</span><span class="de">Wissenswerkzeuge für Compliance und Lehrmaterial für einen Python- und KI-Kurs</span></span></div></li>
+          <li><span class="when">2023-2024</span><div><b><span class="en">Business Development and Marketing Manager</span><span class="de">Business Development und Marketing Manager</span></b><span class="d">Disruptive Designs LLC, USA. <span class="en">International client acquisition, CRM and lead generation</span><span class="de">Internationale Kundenakquise, CRM und Leadgenerierung</span></span></div></li>
+          <li><span class="when">2021-2023</span><div><b><span class="en">Architect</span><span class="de">Architekt</span></b><span class="d">SHA Architects. <span class="en">Design, coordination with clients and contractors, permitting</span><span class="de">Entwurf, Abstimmung mit Bauherren und Firmen, Genehmigung</span></span></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <span class="label"><span class="en">Contact</span><span class="de">Kontakt</span></span>
+    <h2><span class="en">Have a process that takes too long, or an AI system you do not fully trust?</span><span class="de">Ein Prozess dauert zu lange, oder Sie trauen Ihrem KI-System nicht ganz?</span></h2>
+    <p class="prose" style="margin-top:14px"><span class="en">Write to me on LinkedIn or email me at</span><span class="de">Schreiben Sie mir auf LinkedIn oder per E-Mail an</span></p>
+    <p class="mail"><span id="mail-addr">meet.archrehman@gmail.com</span><button type="button" id="mail-copy" class="copy"><span class="en">Copy</span><span class="de">Kopieren</span></button><span id="mail-done" class="label" role="status" aria-live="polite"></span></p>
+    <div class="links">
+      <a class="btn solid" href="https://www.linkedin.com/in/meetrehmann">LinkedIn</a>
+      <a class="btn ghost" href="https://github.com/meet-rehman">GitHub</a>
+      <a class="btn ghost" href="https://x.com/meet_rehman">X @meet_rehman</a>
+      <a class="btn ghost en" href="cv/Abdul-Rehman-CV-EN.pdf" target="_blank" rel="noopener">CV (PDF)</a><a class="btn ghost de" href="cv/Abdul-Rehman-Lebenslauf-DE.pdf" target="_blank" rel="noopener">Lebenslauf (PDF)</a>
+    </div>
+  </div>
+</section>
+
+<section id="impressum" class="legal">
+  <div class="wrap"><div class="prose">
+    <h2>Impressum</h2>
+    <p><span class="en">Information according to § 5 DDG</span><span class="de">Angaben gemäß § 5 DDG</span></p>
+    <address>Abdul Rehman<br>König-Wilhelm-Straße 23<br>89073 Ulm<br><span class="en">Germany</span><span class="de">Deutschland</span></address>
+    <p><b><span class="en">Contact</span><span class="de">Kontakt</span></b><br>E-Mail: meet.archrehman@gmail.com<br>LinkedIn: <a href="https://www.linkedin.com/in/meetrehmann">linkedin.com/in/meetrehmann</a></p>
+    <p><b><span class="en">Responsible for the content</span><span class="de">Verantwortlich für den Inhalt</span></b><br>Abdul Rehman, <span class="en">address as above</span><span class="de">Anschrift wie oben</span></p>
+    <p><span class="en">Links to other websites were checked when they were set. I have no influence on their later content and take no responsibility for it.</span><span class="de">Links auf andere Websites wurden beim Setzen geprüft. Auf deren spätere Inhalte habe ich keinen Einfluss und übernehme dafür keine Verantwortung.</span></p>
+  </div></div>
+</section>
+<section id="privacy" class="legal">
+  <div class="wrap"><div class="prose">
+    <h2><span class="en">Privacy</span><span class="de">Datenschutzerklärung</span></h2>
+    <h3><span class="en">Who is responsible</span><span class="de">Verantwortlicher</span></h3>
+    <p>Abdul Rehman, König-Wilhelm-Straße 23, 89073 Ulm, meet.archrehman@gmail.com</p>
+    <h3><span class="en">What this site does and does not do</span><span class="de">Was diese Website tut und nicht tut</span></h3>
+    <p><span class="en">This site sets no cookies, uses no analytics and no tracking, and has no contact form. Fonts are delivered from this site itself, not from a third party. Your language choice is stored only in your own browser and is not sent anywhere.</span><span class="de">Diese Website setzt keine Cookies, nutzt keine Analyse- oder Tracking-Dienste und hat kein Kontaktformular. Schriften werden von dieser Website selbst ausgeliefert, nicht von Dritten. Ihre Sprachwahl wird nur in Ihrem eigenen Browser gespeichert und nicht übertragen.</span></p>
+    <h3><span class="en">Hosting and server logs</span><span class="de">Hosting und Server-Logdateien</span></h3>
+    <p><span class="en">When you open this site, the hosting provider processes technical data that your browser sends, such as your IP address, the time and the page requested. This is needed to deliver the site and to keep it secure (Art. 6 (1) (f) GDPR). This site is hosted by GitHub Pages, a service of GitHub, Inc., USA, which may process this data on servers outside the EU.</span><span class="de">Beim Aufruf dieser Website verarbeitet der Hosting-Anbieter technische Daten, die Ihr Browser übermittelt, etwa Ihre IP-Adresse, den Zeitpunkt und die aufgerufene Seite. Das ist nötig, um die Website auszuliefern und sicher zu betreiben (Art. 6 Abs. 1 lit. f DSGVO). Diese Website wird über GitHub Pages bereitgestellt, einen Dienst der GitHub, Inc., USA, der diese Daten auch auf Servern außerhalb der EU verarbeiten kann.</span></p>
+    <h3><span class="en">If you write to me</span><span class="de">Wenn Sie mir schreiben</span></h3>
+    <p><span class="en">If you contact me by email, I use your message and address only to answer you. LinkedIn, X and GitHub are separate services with their own privacy rules, which apply once you follow a link to them.</span><span class="de">Wenn Sie mir per E-Mail schreiben, verwende ich Ihre Nachricht und Adresse nur, um Ihnen zu antworten. LinkedIn, X und GitHub sind eigene Dienste mit eigenen Datenschutzregeln, die gelten, sobald Sie einem Link dorthin folgen.</span></p>
+    <h3><span class="en">Your rights</span><span class="de">Ihre Rechte</span></h3>
+    <p><span class="en">You can ask what data I hold about you, and ask for it to be corrected or deleted. You can also complain to a data protection authority, for example the State Commissioner for Data Protection and Freedom of Information Baden-Württemberg.</span><span class="de">Sie können Auskunft darüber verlangen, welche Daten ich über Sie gespeichert habe, und deren Berichtigung oder Löschung verlangen. Sie können sich außerdem bei einer Datenschutzaufsichtsbehörde beschweren, zum Beispiel beim Landesbeauftragten für den Datenschutz und die Informationsfreiheit Baden-Württemberg.</span></p>
+  </div></div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Abdul Rehman, Ulm</span>
+    <span><a href="#impressum">Impressum</a> · <a href="#privacy"><span class="en">Privacy</span><span class="de">Datenschutz</span></a></span>
+    <span><span class="en">Geodata in project images: LGL, www.lgl-bw.de</span><span class="de">Geodaten in Projektbildern: LGL, www.lgl-bw.de</span></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement, en=document.getElementById('lang-en'), de=document.getElementById('lang-de');
+  function set(l,save){
+    root.setAttribute('data-lang',l); root.setAttribute('lang',l);
+    en.setAttribute('aria-pressed',String(l==='en')); de.setAttribute('aria-pressed',String(l==='de'));
+    if(save){try{localStorage.setItem('lang',l)}catch(e){}}
+  }
+  var saved=null; try{saved=localStorage.getItem('lang')}catch(e){}
+  set(saved||((navigator.language||'en').toLowerCase().indexOf('de')===0?'de':'en'),false);
+  en.addEventListener('click',function(){set('en',true)});
+  de.addEventListener('click',function(){set('de',true)});
+})();
+</script>
+<script>
+(function(){
+  var cv=document.getElementById('stack'); if(!cv||!cv.getContext) return;
+  var cx=cv.getContext('2d'), cap=document.getElementById('stack-cap'), root=document.documentElement;
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W=0,H=0,col={};
+  function tok(){var c=getComputedStyle(root);['ink','muted','line','accent','sheet','wash'].forEach(function(k){col[k]=c.getPropertyValue('--'+k).trim()})}
+  function size(){var r=cv.getBoundingClientRect(),d=Math.min(window.devicePixelRatio||1,2);W=r.width;H=r.height;cv.width=Math.round(W*d);cv.height=Math.round(H*d);cx.setTransform(d,0,0,d,0,0)}
+  // four layers of the same plot, bottom to top
+  var L=[{en:'Cadastre',de:'Kataster',dx:-1.9,dy:1.2,r:-.16},{en:'Zoning plan',de:'Bebauungsplan',dx:1.7,dy:.9,r:.13},
+         {en:'Regulation text',de:'Vorschriftentext',dx:-1.3,dy:-1.5,r:.09},{en:'Building model',de:'Gebäudemodell',dx:2.0,dy:-1.0,r:-.12}];
+  var S=10, P={x:5.2,y:3.4,w:2.6,h:3.2};           // sheet size, and the one parcel all layers describe
+  function pr(x,y,z,k,a){                           // isometric projection; k = layer, a = misalignment 0..1
+    var l=L[k],c=Math.cos(l.r*a),s=Math.sin(l.r*a),ux=x-S/2,uy=y-S/2;
+    var X=ux*c-uy*s+S/2+l.dx*a, Y=ux*s+uy*c+S/2+l.dy*a, u=W/(S*2.3), gap=H*.168;
+    return [W*.53+(X-Y)*u*.92, H*.95-k*gap-(X+Y)*u*.46-z*u*.9];
+  }
+  function poly(pts,k,a,fill,stroke,lw,dash){cx.beginPath();pts.forEach(function(p,i){var q=pr(p[0],p[1],p[2]||0,k,a);i?cx.lineTo(q[0],q[1]):cx.moveTo(q[0],q[1])});cx.closePath();
+    if(fill){cx.fillStyle=fill;cx.fill()} if(stroke){cx.setLineDash(dash||[]);cx.lineWidth=lw||1;cx.strokeStyle=stroke;cx.stroke();cx.setLineDash([])}}
+  function seg(a1,b1,k,a,stroke,lw){var p=pr(a1[0],a1[1],a1[2]||0,k,a),q=pr(b1[0],b1[1],b1[2]||0,k,a);cx.beginPath();cx.moveTo(p[0],p[1]);cx.lineTo(q[0],q[1]);cx.lineWidth=lw||1;cx.strokeStyle=stroke;cx.stroke()}
+  function rect(x,y,w,h){return [[x,y],[x+w,y],[x+w,y+h],[x,y+h]]}
+  function draw(a){
+    cx.clearRect(0,0,W,H); var on=1-a, lang=root.getAttribute('data-lang')==='de'?'de':'en';
+    for(var k=0;k<4;k++){
+      cx.globalAlpha=1; poly(rect(0,0,S,S),k,a,col.sheet,col.line,1);
+      if(k===0){ [2.4,5.2,7.8].forEach(function(x){seg([x,0],[x,S],k,a,col.line)}); [3.4,6.6].forEach(function(y){seg([0,y],[S,y],k,a,col.line)}); seg([0,1.5],[5.2,1.5],k,a,col.line);}
+      if(k===1){ cx.globalAlpha=.5; poly(rect(.6,.6,4,5.4),k,a,col.wash); poly(rect(5.2,.6,4.2,8.8),k,a,col.wash); cx.globalAlpha=1;
+        poly(rect(P.x+.35,P.y+.35,P.w-.7,P.h-.7),k,a,null,col.muted,1,[4,3]); }
+      if(k===2){ for(var i=0;i<7;i++){var y=1.2+i*1.15,w=(i%3===0?5.5:i%3===1?7.4:6.3); seg([1,y],[1+w,y],k,a,i===3?col.accent:col.line,i===3?2:1.4);} }
+      if(k===3){ var b=rect(P.x+.5,P.y+.6,P.w-1,P.h-1.3),h=2.3,top=b.map(function(p){return [p[0],p[1],h]});
+        cx.globalAlpha=.9; poly([b[0],b[1],top[1],top[0]],k,a,col.sheet,col.ink,1.2); poly([b[3],b[0],top[0],top[3]],k,a,col.wash,col.ink,1.2); poly(top,k,a,col.sheet,col.ink,1.2); cx.globalAlpha=1; }
+      // the parcel, in every layer
+      cx.globalAlpha=.18+.5*on; poly(rect(P.x,P.y,P.w,P.h),k,a,k===3?null:col.accent,null); cx.globalAlpha=1;
+      poly(rect(P.x,P.y,P.w,P.h),k,a,null,col.accent,1.6+on);
+      var lp=pr(0,S,0,k,a); cx.font='500 '+Math.max(10,W*.027)+'px "IBM Plex Mono",ui-monospace,monospace'; cx.fillStyle=col.muted; cx.textAlign='left'; cx.textBaseline='top'; cx.fillText(L[k][lang].toUpperCase(),Math.max(4,lp[0]-W*.02),lp[1]+6);
+    }
+    if(on>.02){ cx.globalAlpha=on; var c0=pr(P.x+P.w/2,P.y+P.h/2,0,0,a),c3=pr(P.x+P.w/2,P.y+P.h/2,0,3,a);
+      cx.beginPath();cx.moveTo(c0[0],c0[1]);cx.lineTo(c3[0],c3[1]);cx.lineWidth=2;cx.strokeStyle=col.accent;cx.setLineDash([2,5]);cx.stroke();cx.setLineDash([]);
+      for(var m=0;m<4;m++){var q=pr(P.x+P.w/2,P.y+P.h/2,0,m,a);cx.beginPath();cx.arc(q[0],q[1],3.5,0,6.3);cx.fillStyle=col.accent;cx.fill()} cx.globalAlpha=1; }
+    var t=a<.5?{en:'One plot. One checked answer.',de:'Ein Grundstück. Eine geprüfte Antwort.'}:{en:'One plot. Four sources that do not match.',de:'Ein Grundstück. Vier Quellen, die nicht zusammenpassen.'};
+    if(cap&&cap.textContent!==t[lang]) cap.textContent=t[lang];
+  }
+  function ease(x){return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2}
+  var T=9000,start=null,vis=true,tick=0;
+  function frame(ts){ if(start===null)start=ts; if((tick++%90)===0)tok();
+    var p=((ts-start)%T)/T, a = p<.30?0 : p<.45?ease((p-.30)/.15) : p<.80?1 : 1-ease((p-.80)/.20);
+    if(vis) draw(a); requestAnimationFrame(frame); }
+  function still(){tok();size();draw(0)}
+  still(); window.addEventListener('resize',function(){size();if(reduce)draw(0)});
+  new MutationObserver(function(){tok();if(reduce)draw(0)}).observe(root,{attributes:true,attributeFilter:['data-theme','data-lang']});
+  if(window.IntersectionObserver) new IntersectionObserver(function(e){vis=e[0].isIntersecting}).observe(cv);
+  if(!reduce) requestAnimationFrame(frame);
+})();
+</script>
+<script>
+(function(){var b=document.getElementById('mail-copy'),a=document.getElementById('mail-addr'),d=document.getElementById('mail-done');if(!b)return;
+  b.addEventListener('click',function(){var de=document.documentElement.getAttribute('data-lang')==='de';
+    function sel(){var r=document.createRange();r.selectNodeContents(a);var g=getSelection();g.removeAllRanges();g.addRange(r);d.textContent=de?'Markiert':'Selected'}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(a.textContent).then(function(){d.textContent=de?'Kopiert':'Copied'},sel)}else sel();});
+})();
+</script>
+</body>
+</html>
