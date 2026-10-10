@@ -227,6 +227,9 @@ section[id]{scroll-margin-top:72px}
 .strands{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--line);background:var(--sheet);margin:16px 0}
 .strands>div{padding:16px 18px;border-right:1px solid var(--line)}
 .strands>div:last-child{border-right:0}
+.strands.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:980px){.strands.four{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.strands.four{grid-template-columns:1fr}}
 .strands .big{display:block;font-family:var(--display);font-size:2.4rem;line-height:1.1;margin-top:6px;color:var(--accent)}
 .strands p{font-size:.9rem;line-height:1.5;margin:6px 0 0}
 .tfig{margin:22px 0;border:1px solid var(--line);background:#fff;padding:6px}
@@ -263,7 +266,7 @@ section[id]{scroll-margin-top:72px}
     <p class="lede"><span class="en">As an architect I designed within building rules and proposed changes to them. As an engineer I built a system that reads them, and measured how often it is right.</span><span class="de">Als Architekt habe ich innerhalb von Bauvorschriften entworfen und Änderungen an ihnen vorgeschlagen. Als Ingenieur habe ich ein System gebaut, das sie liest, und gemessen, wie oft es richtig liegt.</span></p>
     <div class="jump">
       <a href="#msc"><span class="label">2026 · M.Sc.</span><b><span class="en">AI for building regulations in Stuttgart</span><span class="de">KI für Baurecht in Stuttgart</span></b><span><span class="en">System, evaluation, failures</span><span class="de">System, Evaluation, Fehler</span></span></a>
-      <a href="#barch"><span class="label">B.Arch.</span><b><span class="en">Climate-responsive architecture for Karachi</span><span class="de">Klimagerechte Architektur für Karachi</span></b><span><span class="en">Design and building bye-laws</span><span class="de">Entwurf und Bauvorschriften</span></span></a>
+      <a href="#barch"><span class="label">B.Arch.</span><b><span class="en">Climate-responsive architecture for Karachi</span><span class="de">Klimagerechte Architektur für Karachi</span></b><span><span class="en">Research, design, bye-law proposal</span><span class="de">Forschung, Entwurf, Vorschlag zu Bauvorschriften</span></span></a>
     </div>
   </div>
 </section>
@@ -389,15 +392,60 @@ section[id]{scroll-margin-top:72px}
 <section id="barch">
   <div class="wrap">
     <span class="label"><span class="en">B.Arch. thesis</span><span class="de">Bachelorarbeit in Architektur</span></span>
-    <h2><span class="en">Climate-responsive architecture for Karachi</span><span class="de">Klimagerechte Architektur für Karachi</span></h2>
+    <h2><span class="en">Climate-responsive architecture through energy-efficient design</span><span class="de">Klimagerechte Architektur durch energieeffizientes Entwerfen</span></h2>
+    <p class="subtitle"><span class="en">Building design parameters for integrating active and passive systems in Karachi</span><span class="de">Entwurfsparameter für die Verbindung aktiver und passiver Systeme in Karachi</span></p>
     <div class="meta">
-      <div><span class="label"><span class="en">University</span><span class="de">Hochschule</span></span>NED University of Engineering and Technology, Karachi</div>
+      <div><span class="label"><span class="en">University</span><span class="de">Hochschule</span></span><span class="en">NED University of Engineering and Technology, Karachi. Department of Architecture and Planning</span><span class="de">NED University of Engineering and Technology, Karachi. Fachbereich Architektur und Planung</span></div>
+      <div><span class="label"><span class="en">Degree</span><span class="de">Abschluss</span></span><span class="en">Bachelor of Architecture, final-year design thesis</span><span class="de">Bachelor of Architecture, Entwurfsthesis im Abschlussjahr</span></div>
       <div><span class="label"><span class="en">Award</span><span class="de">Auszeichnung</span></span><span class="en">First position at the university</span><span class="de">Erster Platz an der Universität</span></div>
+      <div><span class="label"><span class="en">Site</span><span class="de">Standort</span></span><span class="en">Clifton Block 5, Karachi, beside the Nehr-e-Khayyam canal</span><span class="de">Clifton Block 5, Karachi, am Kanal Nehr-e-Khayyam</span></div>
     </div>
+
     <div class="tcol">
-      <p><span class="en">Karachi is heating up: extreme heat events are rising and the city grows without regard to climate. My thesis was a mixed-use site with offices, apartments and an urban farm, designed to reduce heat and energy demand through shading, daylight and materials.</span><span class="de">Karachi heizt sich auf: Extreme Hitzeereignisse nehmen zu, und die Stadt wächst ohne Rücksicht auf das Klima. Meine Abschlussarbeit war ein gemischt genutztes Areal mit Büros, Wohnungen und einer urbanen Farm. Verschattung, Tageslicht und Materialwahl sollten Hitze und Energiebedarf senken.</span></p>
-      <p><span class="en">It also recommended changes to the city's building bye-laws. That is where my interest in building rules began, and it leads directly to the master's thesis above.</span><span class="de">Die Arbeit empfahl außerdem Änderungen an den Bauvorschriften der Stadt. Damit begann mein Interesse an Bauvorschriften, und von dort führt ein direkter Weg zur Masterarbeit oben.</span></p>
+      <h3><span class="en">The question</span><span class="de">Die Fragestellung</span></h3>
+      <p><span class="en">Karachi is becoming an urban heat island. Extreme heat events are rising, and the city grows without regard to how buildings respond to the climate. Interiors heat up, so comfort is bought with air conditioning, in a country where electricity demand already exceeds supply.</span><span class="de">Karachi wird zur städtischen Wärmeinsel. Extreme Hitzeereignisse nehmen zu, und die Stadt wächst ohne Rücksicht darauf, wie Gebäude auf das Klima reagieren. Innenräume heizen sich auf, also wird Komfort mit Klimaanlagen erkauft, in einem Land, in dem die Stromnachfrage das Angebot bereits übersteigt.</span></p>
+      <p><span class="en">My hypothesis: because the energy crisis is expected to get worse, a climate-responsive design can show a new direction, especially for the commercial sector. Two questions guided the work.</span><span class="de">Meine Hypothese: Weil sich die Energiekrise voraussichtlich verschärft, kann ein klimagerechter Entwurf eine neue Richtung zeigen, besonders für den gewerblichen Sektor. Zwei Fragen leiteten die Arbeit.</span></p>
+      <ul>
+        <li><span class="en">How can the built environment reduce the effect of extreme heat?</span><span class="de">Wie kann die gebaute Umwelt die Wirkung extremer Hitze verringern?</span></li>
+        <li><span class="en">How can active and passive systems be combined so that a design works?</span><span class="de">Wie lassen sich aktive und passive Systeme so verbinden, dass ein Entwurf funktioniert?</span></li>
+      </ul>
+
+      <h3><span class="en">How I worked</span><span class="de">Wie ich vorgegangen bin</span></h3>
+      <p><span class="en">The thesis has a research part and a design part. The research came first and set the rules for the design.</span><span class="de">Die Arbeit besteht aus einem Forschungsteil und einem Entwurfsteil. Die Forschung kam zuerst und legte die Regeln für den Entwurf fest.</span></p>
     </div>
+    <div class="strands four">
+      <div><span class="label">1 · <span class="en">Standards</span><span class="de">Normen</span></span>
+        <p><span class="en">I read the LEED credit system, passive design principles and the Pakistani energy codes, among them the Building Energy Code 1990 and the energy provisions of the Building Code of Pakistan 2011.</span><span class="de">Ich habe das LEED-Bewertungssystem, die Grundsätze passiven Entwerfens und die pakistanischen Energievorschriften gelesen, darunter den Building Energy Code 1990 und die Energiebestimmungen des Building Code of Pakistan 2011.</span></p></div>
+      <div><span class="label">2 · <span class="en">Case studies</span><span class="de">Fallstudien</span></span>
+        <p><span class="en">Two LEED-certified office buildings, HBL Tower in Karachi and Suzlon One Earth in Pune, and one building without air conditioning: the central library of Karachi University, which I analysed floor by floor.</span><span class="de">Zwei LEED-zertifizierte Bürogebäude, HBL Tower in Karachi und Suzlon One Earth in Pune, und ein Gebäude ohne Klimaanlage: die Zentralbibliothek der Universität Karachi, die ich Geschoss für Geschoss analysiert habe.</span></p></div>
+      <div><span class="label">3 · <span class="en">Interviews</span><span class="de">Interviews</span></span>
+        <p><span class="en">Interviews with architects from four Karachi offices, with contractors, engineers and project managers, and a questionnaire for building users based on building performance evaluation.</span><span class="de">Interviews mit Architekten aus vier Büros in Karachi, mit Bauunternehmern, Ingenieuren und Projektleitern sowie ein Fragebogen für Gebäudenutzer auf Grundlage der Building Performance Evaluation.</span></p></div>
+      <div><span class="label">4 · <span class="en">Site study</span><span class="de">Standortanalyse</span></span>
+        <p><span class="en">Three candidate sites compared by strengths, weaknesses, opportunities and threats. For the chosen site: sun shading in summer and winter, wind, land use, building heights and the applicable bye-laws.</span><span class="de">Drei mögliche Standorte, verglichen nach Stärken, Schwächen, Chancen und Risiken. Für den gewählten Standort: Verschattung im Sommer und Winter, Wind, Flächennutzung, Gebäudehöhen und die geltenden Bauvorschriften.</span></p></div>
+    </div>
+
+    <div class="tcol">
+      <h3><span class="en">What the research showed</span><span class="de">Was die Forschung zeigte</span></h3>
+      <ul>
+        <li><span class="en"><b>The codes say little about saving energy.</b> They set minimum requirements for windows, ventilation and lighting equipment, but energy conservation in buildings takes up only a few sentences.</span><span class="de"><b>Die Vorschriften sagen wenig zum Energiesparen.</b> Sie legen Mindestanforderungen an Fenster, Lüftung und Beleuchtung fest, doch die Energieeinsparung in Gebäuden nimmt nur wenige Sätze ein.</span></li>
+        <li><span class="en"><b>Offices have no data on how their buildings perform.</b> The design consultants named the lack of evaluation before and after occupancy as their main gap.</span><span class="de"><b>Büros haben keine Daten dazu, wie ihre Gebäude funktionieren.</b> Die Planer nannten fehlende Auswertungen vor und nach dem Bezug als ihre größte Lücke.</span></li>
+        <li><span class="en"><b>Designers and builders do not talk enough.</b> Contractors and engineers named a communication gap with designers, missing detail in working drawings and too little knowledge of materials and equipment.</span><span class="de"><b>Planende und Ausführende sprechen zu wenig miteinander.</b> Bauunternehmer und Ingenieure nannten eine Kommunikationslücke zu den Planern, fehlende Details in den Ausführungsplänen und zu wenig Wissen über Materialien und Technik.</span></li>
+        <li><span class="en"><b>An older building still works without air conditioning.</b> The university library turns its long facades to the south-west sea breeze and shades them with sun-breakers four to six feet deep. Its rooms are ventilated and lit naturally.</span><span class="de"><b>Ein älteres Gebäude funktioniert noch immer ohne Klimaanlage.</b> Die Universitätsbibliothek richtet ihre Längsfassaden zur Seebrise aus Südwest und verschattet sie mit vier bis sechs Fuß tiefen Sonnenbrechern. Ihre Räume werden natürlich belüftet und belichtet.</span></li>
+      </ul>
+
+      <h3><span class="en">The design</span><span class="de">Der Entwurf</span></h3>
+      <p><span class="en">A mixed-use site: about 50 co-working offices, service apartments, an urban farm tower with a market, public open space and parking below ground. The parking is shared with the neighbourhood.</span><span class="de">Ein gemischt genutztes Areal: rund 50 Co-Working-Büros, Service-Apartments, ein Turm für urbane Landwirtschaft mit Markt, öffentlicher Freiraum und eine Tiefgarage, die auch die Nachbarschaft nutzt.</span></p>
+      <ul>
+        <li><span class="en"><b>One module for everything.</b> Offices, apartments and the farm tower use the same 40 by 40 foot module with a courtyard of equal size, on a single-loaded corridor, set at right angles to the wind.</span><span class="de"><b>Ein Modul für alles.</b> Büros, Wohnungen und der Farmturm nutzen dasselbe Modul von 40 mal 40 Fuß mit einem gleich großen Hof, an einem einseitig erschlossenen Flur, quer zum Wind gestellt.</span></li>
+        <li><span class="en"><b>Sun.</b> Recessed sun shades on the facades, set at lower angles on the east side of the offices, which faces direct sun.</span><span class="de"><b>Sonne.</b> Zurückgesetzte Sonnenschutzelemente an den Fassaden, an der direkt besonnten Ostseite der Büros flacher geneigt.</span></li>
+        <li><span class="en"><b>Wind and humidity.</b> Large window openings onto the courtyards, open courtyards at the top, and water bodies across the site, with a target of about 50% humidity during the day.</span><span class="de"><b>Wind und Feuchte.</b> Große Fensteröffnungen zu den Höfen, oben offene Höfe und Wasserflächen auf dem Gelände, mit einem Zielwert von rund 50 % Luftfeuchte am Tag.</span></li>
+        <li><span class="en"><b>Water.</b> Grey water from the Nehr-e-Khayyam canal is filtered on site and used to irrigate the urban farm and the gardens.</span><span class="de"><b>Wasser.</b> Grauwasser aus dem Kanal Nehr-e-Khayyam wird vor Ort gefiltert und bewässert die urbane Farm und die Gärten.</span></li>
+        <li><span class="en"><b>Small footprint.</b> Much of the site stays open as landscape and water, to reduce the heat the buildings store and give off.</span><span class="de"><b>Kleine Grundfläche.</b> Ein großer Teil des Geländes bleibt als Landschaft und Wasser frei, damit die Gebäude weniger Wärme speichern und abgeben.</span></li>
+      </ul>
+    </div>
+
+    <figure class="tfig "><img src="img/thesis-b-schematics.jpg" alt="Four hand-drawn layout sketches of the site" loading="lazy" width="1068" height="692"><figcaption><span class="en">Four of the five first layout sketches for the site</span><span class="de">Vier der fünf ersten Layoutskizzen für das Gelände</span></figcaption></figure>
+
     <div class="early-grid">
       <figure class="iso">
         <span class="label"><span class="en">Office module: design details for thermal comfort</span><span class="de">Büromodul: Entwurfsdetails für thermischen Komfort</span></span>
@@ -407,8 +455,34 @@ section[id]{scroll-margin-top:72px}
           <dl><dt><span class="en">Bamboo interior walls</span><span class="de">Innenwände aus Bambus</span></dt><dd><span class="en">A rapidly growing material with a growth cycle of less than 10 years.</span><span class="de">Ein schnell nachwachsender Baustoff mit einem Wachstumszyklus von unter 10 Jahren.</span></dd><dt><span class="en">Large window facade</span><span class="de">Großflächige Fensterfassade</span></dt><dd><span class="en">Openable windows that bring daylight in through the facade.</span><span class="de">Öffenbare Fenster, die Tageslicht über die Fassade ins Innere bringen.</span></dd><dt><span class="en">Brise soleil</span><span class="de">Brise Soleil</span></dt><dd><span class="en">Sun-shading devices set back 5 feet on the south-west facade reduce heat gain in hot summers.</span><span class="de">Um 5 Fuß zurückgesetzte Sonnenschutzelemente an der Südwestfassade verringern den Wärmeeintrag im heißen Sommer.</span></dd><dt><span class="en">Shear wall</span><span class="de">Schubwand</span></dt><dd><span class="en">Structural element that resists torsion in the building.</span><span class="de">Tragendes Bauteil, das Torsion im Gebäude aufnimmt.</span></dd></dl>
         </div>
       </figure>
+      <figure><img src="img/thesis-masterplan.jpg" alt="Masterplan of the site" loading="lazy" width="1100" height="739"><figcaption><span class="en">Masterplan: offices, apartments, urban farm, with the canal along the north edge</span><span class="de">Masterplan: Büros, Wohnungen, urbane Farm, mit dem Kanal an der Nordkante</span></figcaption></figure>
       <figure><img src="img/thesis-elevation.jpg" alt="West elevation of the office building with sun shading" loading="lazy" width="1600" height="571"><figcaption><span class="en">Office building, west elevation with sun shading</span><span class="de">Bürogebäude, Westansicht mit Sonnenschutz</span></figcaption></figure>
-      <figure><img src="img/thesis-masterplan.jpg" alt="Masterplan of the site" loading="lazy" width="1100" height="739"><figcaption><span class="en">Masterplan: offices, apartments, urban farm</span><span class="de">Masterplan: Büros, Wohnungen, urbane Farm</span></figcaption></figure>
+    </div>
+    <div class="pair">
+      <figure class="tfig "><img src="img/thesis-b-office.jpg" alt="Four rendered views of the office buildings with courtyards and water" loading="lazy" width="825" height="484"><figcaption><span class="en">Office buildings with courtyards, roof gardens and water bodies</span><span class="de">Bürogebäude mit Höfen, Dachgärten und Wasserflächen</span></figcaption></figure>
+      <figure class="tfig "><img src="img/thesis-b-farm.jpg" alt="Two rendered views of the urban farm tower" loading="lazy" width="833" height="228"><figcaption><span class="en">Urban farm tower</span><span class="de">Turm für urbane Landwirtschaft</span></figcaption></figure>
+    </div>
+
+    <div class="tcol">
+      <h3><span class="en">The proposal: change the bye-laws</span><span class="de">Der Vorschlag: die Bauvorschriften ändern</span></h3>
+      <p class="pull"><span class="en">A smaller building footprint means less harm to the climate of the city. The rules should say so.</span><span class="de">Eine kleinere Gebäudegrundfläche schadet dem Stadtklima weniger. Das sollten die Vorschriften festhalten.</span></p>
+      <p><span class="en">The site falls under the Sindh Building Control Authority, whose rules set the floor area ratio and the open space for each plot. The thesis ends with three recommendations to the regulators:</span><span class="de">Das Grundstück unterliegt der Sindh Building Control Authority, deren Regeln Geschossflächenzahl und Freiflächen je Grundstück festlegen. Die Arbeit endet mit drei Empfehlungen an die Aufsichtsbehörden:</span></p>
+      <ul>
+        <li><span class="en">Add criteria for urban farming to the bye-laws at city level.</span><span class="de">Kriterien für urbane Landwirtschaft auf Stadtebene in die Bauvorschriften aufnehmen.</span></li>
+        <li><span class="en">Require half of a plot to stay open: 50% built area, 50% open space.</span><span class="de">Vorschreiben, dass die Hälfte eines Grundstücks frei bleibt: 50 % bebaut, 50 % Freifläche.</span></li>
+        <li><span class="en">Address the urban heat island effect through standards and material specifications.</span><span class="de">Dem Wärmeinseleffekt mit Standards und Materialvorgaben begegnen.</span></li>
+      </ul>
+      <p><span class="en">In the final review the jury took up exactly this point, the reform of the bye-laws for urban farming and for smaller footprints. The design is linked to six Sustainable Development Goals: 3, 6, 8, 9, 12 and 13.</span><span class="de">In der Abschlusspräsentation griff die Jury genau diesen Punkt auf: die Reform der Bauvorschriften für urbane Landwirtschaft und kleinere Grundflächen. Der Entwurf ist mit sechs Zielen für nachhaltige Entwicklung verknüpft: 3, 6, 8, 9, 12 und 13.</span></p>
+
+      <h3><span class="en">Limits</span><span class="de">Grenzen</span></h3>
+      <ul>
+        <li><span class="en">It is a design proposal. It was not built.</span><span class="de">Es ist ein Entwurfsvorschlag. Er wurde nicht gebaut.</span></li>
+        <li><span class="en">I did not run an energy simulation. The effects on heat, humidity and energy demand are design intentions, not measured results.</span><span class="de">Ich habe keine Energiesimulation durchgeführt. Die Wirkungen auf Hitze, Feuchte und Energiebedarf sind Entwurfsabsichten, keine Messergebnisse.</span></li>
+        <li><span class="en">The interviews are reported as short statements, not as a counted survey.</span><span class="de">Die Interviews sind als Kurzaussagen wiedergegeben, nicht als ausgezählte Befragung.</span></li>
+      </ul>
+
+      <h3><span class="en">What it led to</span><span class="de">Wohin es geführt hat</span></h3>
+      <p><span class="en">This thesis ended with a question to the regulators: what should the rules allow? Three years of professional work and a master's degree later, I built a system that answers the question that comes before it: what do the rules allow today, and how sure can we be? That is the master's thesis above.</span><span class="de">Diese Arbeit endete mit einer Frage an die Behörden: Was sollten die Vorschriften erlauben? Drei Jahre Berufspraxis und ein Masterstudium später habe ich ein System gebaut, das die Frage davor beantwortet: Was erlauben die Vorschriften heute, und wie sicher können wir sein? Das ist die Masterarbeit oben.</span></p>
     </div>
   </div>
 </section>
