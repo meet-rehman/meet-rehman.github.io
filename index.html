@@ -80,6 +80,15 @@ h1 em{font-style:normal;color:var(--accent)}
 .btn{display:inline-block;font-weight:600;font-size:.95rem;text-decoration:none;padding:11px 18px;border-radius:3px;border:1px solid var(--accent)}
 .btn.solid{background:var(--accent);color:var(--accent-ink)}
 .btn.ghost{color:var(--accent);background:var(--sheet)}
+.early{margin-top:44px;padding-top:28px;border-top:1px solid var(--line)}
+.early h3{margin:6px 0 10px}
+.early p{max-width:68ch;color:var(--muted)}
+.early-grid{display:grid;grid-template-columns:3fr 2fr;gap:14px;margin-top:20px}
+.early-grid figure{margin:0;border:1px solid var(--line);background:#fff;padding:6px;display:flex;flex-direction:column}
+.early-grid figure.wide{grid-column:1/-1}
+.early-grid img{display:block;width:100%;height:100%;max-height:340px;object-fit:contain;flex:1}
+.early-grid figcaption{font-family:var(--mono);font-size:.7rem;color:#555;padding:6px 4px 0}
+@media(max-width:640px){.early-grid{grid-template-columns:1fr}}
 .portrait{margin:0;border:1px solid var(--line);background:var(--sheet);padding:8px}
 .portrait img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%}
 
@@ -236,6 +245,16 @@ section[id]{scroll-margin-top:72px}
         <p><span class="en">I trained and worked as an architect. In practice I saw how much time goes into finding out what may be built on a plot. The answer exists, but it is spread over federal law, state law, the municipal plan and the cadastre.</span><span class="de">Ich habe Architektur studiert und in einem Architekturbüro gearbeitet. In der Praxis habe ich gesehen, wie viel Zeit die Frage kostet, was auf einem Grundstück gebaut werden darf. Die Antwort existiert, aber sie verteilt sich auf Bundesrecht, Landesrecht, den Bebauungsplan und das Kataster.</span></p>
         <p><span class="en">After that I built up client acquisition for a US architecture firm, and then completed an M.Sc. in Sustainable Mobilities at HfWU Nürtingen-Geislingen. My thesis was an AI system for building regulation questions in Stuttgart, with a benchmark that shows how often each part of it is right.</span><span class="de">Danach habe ich für ein US-amerikanisches Architekturbüro die Kundenakquise aufgebaut und anschließend den M.Sc. Sustainable Mobilities an der HfWU Nürtingen-Geislingen abgeschlossen. Meine Masterarbeit war ein KI-System für baurechtliche Fragen in Stuttgart, mit einem Benchmark, der zeigt, wie oft jeder Teil davon richtig liegt.</span></p>
         <p><span class="en">My view: trustworthy AI for regulated fields will come from systems that check each other against official sources, and that are tested until we know exactly where they fail.</span><span class="de">Meine Überzeugung: Vertrauenswürdige KI für regulierte Bereiche entsteht aus Systemen, die sich gegenseitig an amtlichen Quellen prüfen und so lange getestet werden, bis genau bekannt ist, wo sie versagen.</span></p>
+      </div>
+    </div>
+    <div class="early">
+      <span class="label"><span class="en">Where I started</span><span class="de">Wo ich angefangen habe</span></span>
+      <h3><span class="en">Bachelor thesis in architecture: climate-responsive design for Karachi</span><span class="de">Bachelorarbeit in Architektur: klimagerechtes Entwerfen für Karachi</span></h3>
+      <p><span class="en">My B.Arch. thesis at NED University Karachi was a mixed-use site with offices, apartments and an urban farm, designed to reduce heat and energy demand through shading, daylight and materials. It also recommended changes to the city's building bye-laws. It was awarded first position at the university, and it is where my interest in building rules began.</span><span class="de">Meine B.Arch.-Abschlussarbeit an der NED University Karachi war ein gemischt genutztes Areal mit Büros, Wohnungen und einer urbanen Farm. Verschattung, Tageslicht und Materialwahl sollten Hitze und Energiebedarf senken. Die Arbeit empfahl außerdem Änderungen an den Bauvorschriften der Stadt. Sie wurde an der Universität mit dem ersten Platz ausgezeichnet, und mit ihr begann mein Interesse an Bauvorschriften.</span></p>
+      <div class="early-grid">
+        <figure class="wide"><img src="img/thesis-elevation.jpg" alt="West elevation of the office building with sun shading" loading="lazy" width="1600" height="571"><figcaption><span class="en">Office building, west elevation with sun shading</span><span class="de">Bürogebäude, Westansicht mit Sonnenschutz</span></figcaption></figure>
+        <figure><img src="img/thesis-masterplan.jpg" alt="Masterplan of the site" loading="lazy" width="1100" height="739"><figcaption><span class="en">Masterplan: offices, apartments, urban farm</span><span class="de">Masterplan: Büros, Wohnungen, urbane Farm</span></figcaption></figure>
+        <figure><img src="img/thesis-isometric.jpg" alt="Exploded isometric of an office module" loading="lazy" width="797" height="900"><figcaption><span class="en">Office module, exploded isometric</span><span class="de">Büromodul, Explosionsisometrie</span></figcaption></figure>
       </div>
     </div>
     <div class="disc">
