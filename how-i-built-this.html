@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How I built this site | Abdul Rehman</title>
+<meta name="description" content="A step-by-step account of how I built my portfolio website with an AI assistant, at no hosting cost: the order of work, what to check yourself, and what I would do differently.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%232443b8'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' fill='white' text-anchor='middle'%3EAR%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<style>
+@font-face{font-family:"Archivo";src:url(fonts/archivo.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:swap}
+@font-face{font-family:"IBM Plex Sans";src:url(fonts/ibm-plex-sans-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"IBM Plex Sans";src:url(fonts/ibm-plex-sans-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"IBM Plex Sans";src:url(fonts/ibm-plex-sans-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"IBM Plex Mono";src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"IBM Plex Mono";src:url(fonts/ibm-plex-mono-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
+html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+
+/* Layout: a drawing sheet. One column of content on a fine plan grid, with a title block
+   (the stamp every architectural drawing carries) as the recurring device. */
+:root{
+  --paper:#f2f4f6; --sheet:#fbfcfd; --ink:#15202b; --muted:#56636f; --line:#cdd5dc;
+  --accent:#2443b8; --accent-ink:#ffffff; --wash:#e6ebf7; --grid:rgba(36,67,184,.055);
+  --display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --gutter:clamp(16px,4vw,40px); --measure:66ch;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0f151b; --sheet:#151d25; --ink:#e7ecf1; --muted:#9aa8b5; --line:#2b3742;
+    --accent:#93a8ff; --accent-ink:#0f151b; --wash:#1b2540; --grid:rgba(147,168,255,.05);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0f151b; --sheet:#151d25; --ink:#e7ecf1; --muted:#9aa8b5; --line:#2b3742;
+  --accent:#93a8ff; --accent-ink:#0f151b; --wash:#1b2540; --grid:rgba(147,168,255,.05);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px}
+:root:not([data-lang="de"]) .de{display:none!important}
+:root[data-lang="de"] .en{display:none!important}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1120px;margin-inline:auto;padding-inline:var(--gutter)}
+.label{font-family:var(--mono);font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:20px;padding-block:12px;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:700;font-stretch:112%;letter-spacing:.01em;color:var(--ink);text-decoration:none;margin-right:auto}
+nav{display:flex;gap:18px;flex-wrap:wrap}
+nav a{color:var(--ink);text-decoration:none;font-size:.92rem}
+nav a:hover{color:var(--accent)}
+.lang{display:flex;border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.lang button{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;background:transparent;color:var(--muted);border:0;padding:6px 10px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+
+/* hero */
+.hero{padding-block:clamp(36px,7vw,84px) clamp(28px,5vw,56px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:center}
+.stack{margin:0;min-width:0}
+.stack canvas{display:block;width:100%;aspect-ratio:1/1.08}
+.stack figcaption{text-align:center;min-height:1.4em;color:var(--accent)}
+.about-photo{max-width:250px;margin-top:22px}
+h1{font-family:var(--display);font-weight:750;font-stretch:114%;font-size:clamp(1.9rem,4.4vw,3.3rem);line-height:1.08;letter-spacing:-.015em;margin:14px 0 22px;text-wrap:balance}
+h1 em{font-style:normal;color:var(--accent)}
+.lede{font-size:1.14rem;max-width:56ch;margin:0 0 26px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;font-weight:600;font-size:.95rem;text-decoration:none;padding:11px 18px;border-radius:3px;border:1px solid var(--accent)}
+.btn.solid{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{color:var(--accent);background:var(--sheet)}
+.early-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:28px}
+.early-grid figure{margin:0;border:1px solid var(--line);background:#fff;padding:6px}
+.early-grid img{display:block;width:100%;height:auto;max-height:420px;object-fit:contain}
+.early-grid figcaption,.iso figcaption{font-family:var(--mono);font-size:.7rem;color:#555;padding:6px 4px 0}
+.early-grid figure.iso{margin:0;border:1px solid var(--line);background:#fff;color:#1b1f27;padding:clamp(14px,3vw,28px)}
+.iso-grid{display:grid;grid-template-columns:1fr minmax(0,1.5fr) 1fr;gap:clamp(14px,3vw,32px);align-items:center}
+.iso-grid img{display:block;width:100%;height:auto}
+.iso dl{margin:0}
+.iso dt{font-weight:600;font-size:.95rem;margin-top:14px}
+.iso dl dt:first-child{margin-top:0}
+.iso dd{margin:2px 0 0;font-size:.85rem;line-height:1.4;color:#4a5160}
+.iso .label{color:#4a5160;display:block;margin-bottom:14px}
+.back{display:inline-block;margin-bottom:18px;font-family:var(--mono);font-size:.8rem}
+@media(max-width:760px){.iso-grid{grid-template-columns:1fr}.iso-grid img{order:-1;max-width:420px;margin-inline:auto}}
+.jump{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:12px}
+.jump a{display:flex;flex-direction:column;gap:4px;border:1px solid var(--accent);background:var(--wash);padding:16px 18px;text-decoration:none;color:var(--ink)}
+.jump a:hover{background:var(--sheet)}
+.jump b{font-family:var(--display);font-weight:650;font-size:1.08rem;line-height:1.25}
+.jump a>span:last-child{color:var(--accent);font-size:.9rem;font-weight:600}
+.theses-strip{margin-top:clamp(28px,5vw,44px)}
+@media(max-width:760px){.jump{grid-template-columns:1fr}}
+.portrait{margin:0;border:1px solid var(--line);background:var(--sheet);padding:8px}
+.portrait img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%}
+
+/* title block */
+.stamp{margin-top:clamp(28px,5vw,48px);border:1.5px solid var(--ink);background:var(--sheet);display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.stamp div{padding:12px 14px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-width:0}
+.stamp b{display:block;font-weight:600;font-size:.98rem;line-height:1.35;margin-top:4px}
+
+/* sections */
+section{padding-block:clamp(40px,7vw,80px);border-top:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(16px,4vw,48px);margin-bottom:clamp(24px,4vw,40px)}
+h2{font-family:var(--display);font-weight:700;font-stretch:112%;font-size:clamp(1.6rem,3.4vw,2.3rem);line-height:1.1;margin:8px 0 0;text-wrap:balance}
+.sec-head>p{margin:0;max-width:var(--measure);color:var(--muted)}
+.sec-head .prose p{margin:0 0 14px}
+.sec-head .prose p:last-child{margin-bottom:0}
+h3{font-family:var(--display);font-weight:650;font-stretch:108%;font-size:1.28rem;line-height:1.2;margin:0 0 8px;text-wrap:balance}
+p{margin:0 0 14px}
+.prose{max-width:var(--measure)}
+
+/* disciplines */
+.disc{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border:1px solid var(--line);background:var(--sheet)}
+.disc div{padding:18px 16px;border-right:1px solid var(--line);min-width:0}
+.disc div:last-child{border-right:0}
+.disc h3{font-size:1.02rem}
+.disc p{font-size:.9rem;color:var(--muted);margin:0}
+
+/* work */
+.case{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:start;padding-block:clamp(22px,4vw,36px);border-top:1px solid var(--line)}
+.case:first-of-type{border-top:0;padding-top:0}
+.case figure{margin:0;border:1px solid var(--line);background:var(--sheet);padding:6px}
+.case img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top}
+.case figcaption{font-family:var(--mono);font-size:.7rem;color:var(--muted);padding:6px 4px 0}
+.case ul{margin:10px 0 16px;padding-left:18px}
+.case li{margin-bottom:6px}
+.facts{display:flex;flex-wrap:wrap;gap:8px 22px;margin:14px 0 16px;font-variant-numeric:tabular-nums}
+.facts span{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+.facts b{font-family:var(--display);font-size:1.25rem;color:var(--ink);margin-right:6px}
+.more{width:100%;border-collapse:collapse;background:var(--sheet);border:1px solid var(--line)}
+.more th,.more td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--line);font-size:.93rem}
+.more th{font-family:var(--mono);font-weight:500;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.more td:first-child{font-weight:600;min-width:13ch}
+.scroll{overflow-x:auto}
+
+/* services */
+.seek{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1.5px solid var(--ink);background:var(--sheet);margin-bottom:clamp(20px,3vw,28px)}
+.seek div{padding:14px 16px;border-right:1px solid var(--line);min-width:0}
+.seek div:last-child{border-right:0}
+.seek b{display:block;font-weight:600;font-size:.98rem;line-height:1.4;margin-top:4px}
+.svc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.svc article{background:var(--sheet);padding:clamp(18px,3vw,28px);min-width:0}
+.svc .label{display:block;margin-bottom:8px}
+.svc ul{margin:10px 0 0;padding-left:18px;font-size:.95rem}
+.svc li{margin-bottom:5px}
+
+/* two columns list */
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,5vw,64px)}
+.rows{list-style:none;margin:0;padding:0}
+.rows li{display:grid;grid-template-columns:9.5ch minmax(0,1fr);gap:14px;padding:12px 0;border-top:1px solid var(--line)}
+.rows time,.rows .when{font-family:var(--mono);font-size:.78rem;color:var(--muted);padding-top:3px}
+.rows b{display:block}
+.rows span.d{color:var(--muted);font-size:.93rem}
+
+/* contact */
+.contact{background:var(--wash)}
+.contact h2{font-size:clamp(1.8rem,4.4vw,3rem)}
+.mail{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:6px 0 0}
+#mail-addr{font-family:var(--mono);font-size:1.12rem;font-weight:500;user-select:all;overflow-wrap:anywhere;min-width:0}
+.copy{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;background:var(--sheet);color:var(--accent);border:1px solid var(--accent);border-radius:3px;padding:6px 10px;cursor:pointer}
+.links{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.legal{font-size:.92rem}
+.legal h2{font-size:1.25rem}
+.legal h3{font-size:1rem;margin-top:16px}
+.legal address{font-style:normal;margin:8px 0 12px}
+footer{border-top:1px solid var(--line);padding-block:22px;font-size:.84rem;color:var(--muted)}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
+
+@media (max-width:860px){
+  .hero-grid,.sec-head,.case,.cols{grid-template-columns:minmax(0,1fr)}
+  .stack{max-width:440px;margin-inline:auto;width:100%}
+  .stamp{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .disc{grid-template-columns:minmax(0,1fr)}
+  .disc div{border-right:0;border-bottom:1px solid var(--line)}
+  .disc div:last-child{border-bottom:0}
+  .svc{grid-template-columns:minmax(0,1fr)}
+  .seek{grid-template-columns:minmax(0,1fr)}
+  .seek div{border-right:0;border-bottom:1px solid var(--line)}
+  .seek div:last-child{border-bottom:0}
+  nav{order:3;width:100%;gap:14px}
+}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+section[id]{scroll-margin-top:72px}
+</style>
+<style>
+.tintro{border-top:0}
+.th1{font-family:var(--display);font-weight:700;font-stretch:112%;font-size:clamp(1.9rem,4.6vw,3.1rem);line-height:1.08;margin:10px 0 0;max-width:20ch;text-wrap:balance}
+.lede{font-size:1.12rem;max-width:60ch;color:var(--muted);margin:18px 0 0}
+.jump{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:30px}
+.jump a{display:flex;flex-direction:column;gap:4px;border:1px solid var(--line);background:var(--sheet);padding:16px 18px;text-decoration:none;color:var(--ink)}
+.jump a:hover{border-color:var(--accent)}
+.jump b{font-family:var(--display);font-weight:650;font-size:1.08rem;line-height:1.25}
+.jump a>span:last-child{color:var(--muted);font-size:.9rem}
+.subtitle{font-size:1.1rem;color:var(--muted);margin:10px 0 0;max-width:60ch}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border:1px solid var(--line);background:var(--sheet);margin:26px 0 10px}
+.meta>div{padding:12px 16px;border-right:1px solid var(--line);font-size:.92rem;line-height:1.45;margin-right:-1px;border-bottom:1px solid var(--line);margin-bottom:-1px}
+.meta .label{display:block;margin-bottom:4px}
+.tcol{max-width:var(--measure)}
+.tcol h3{margin:38px 0 10px}
+.tcol ul{padding-left:1.15em;margin:10px 0}
+.tcol li{margin-bottom:8px}
+.pull{font-family:var(--display);font-weight:650;font-size:clamp(1.25rem,2.6vw,1.6rem);line-height:1.25;border-left:3px solid var(--accent);padding-left:16px;margin:14px 0 18px}
+.note,.credit{font-size:.88rem;color:var(--muted);max-width:var(--measure)}
+.credit{margin-top:22px}
+.flow{margin:22px 0 12px;border:1px solid var(--line);background:var(--sheet);padding:clamp(14px,3vw,26px);text-align:center}
+.flow .node{border:1px solid var(--line);background:var(--paper);padding:10px 12px;font-size:.88rem;line-height:1.35}
+.flow .node b{display:block;font-size:.95rem}
+.flow .q,.flow .r{max-width:420px;margin-inline:auto}
+.flow .q{border-color:var(--ink);font-weight:600}
+.flow .r{background:var(--wash);border-color:var(--accent)}
+.flow .three,.flow .four{display:grid;gap:10px}
+.flow .three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.flow .four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.flow .arrow{color:var(--muted);line-height:1.6}
+.tt{border-collapse:collapse;width:100%;font-size:.9rem;margin:18px 0;background:var(--sheet)}
+.tt th,.tt td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top;line-height:1.45}
+.tt th{font-family:var(--mono);font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.tt.num td:not(:first-child),.tt.num th:not(:first-child){text-align:right;font-variant-numeric:tabular-nums}
+.tt.layers{min-width:640px}
+.tt.slim{max-width:460px}
+.strands{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--line);background:var(--sheet);margin:16px 0}
+.strands>div{padding:16px 18px;border-right:1px solid var(--line)}
+.strands>div:last-child{border-right:0}
+.strands.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:980px){.strands.four{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.strands.four{grid-template-columns:1fr}}
+.strands .big{display:block;font-family:var(--display);font-size:2.4rem;line-height:1.1;margin-top:6px;color:var(--accent)}
+.strands p{font-size:.9rem;line-height:1.5;margin:6px 0 0}
+.tfig{margin:22px 0;border:1px solid var(--line);background:#fff;padding:6px}
+.tfig img{display:block;width:100%;height:auto}
+.tfig figcaption{font-family:var(--mono);font-size:.7rem;color:#555;padding:6px 4px 0}
+.tfig.narrow{max-width:520px}
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+.pair .tfig{margin:22px 0 6px}
+@media(max-width:760px){.jump,.pair,.strands,.flow .three{grid-template-columns:1fr}.flow .four{grid-template-columns:repeat(2,minmax(0,1fr))}.strands>div{border-right:0;border-bottom:1px solid var(--line)}.strands>div:last-child{border-bottom:0}}
+</style>
+<style>
+.guide h3{margin:44px 0 10px}
+.guide .step{display:block;margin-bottom:4px}
+.guide ol,.guide ul{padding-left:1.2em;margin:10px 0}
+.guide li{margin-bottom:8px}
+.guide .box{border:1px solid var(--line);background:var(--sheet);padding:16px 20px;margin:18px 0}
+.guide .box p{margin:0 0 8px}
+.guide .box p:last-child{margin:0}
+.guide .ex{border-left:3px solid var(--line);padding-left:14px;color:var(--muted);margin:14px 0}
+.only-de{display:none}
+:root[data-lang="de"] .only-de{display:block;font-size:.9rem;color:var(--muted);margin-top:12px}
+</style>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html#top">Abdul Rehman</a>
+    <nav aria-label="Sections">
+      <a href="index.html#about"><span class="en">About</span><span class="de">Über mich</span></a>
+      <a href="index.html#work"><span class="en">Work</span><span class="de">Projekte</span></a>
+      <a href="index.html#services"><span class="en">What I do</span><span class="de">Was ich mache</span></a>
+      <a href="index.html#research"><span class="en">Research</span><span class="de">Forschung</span></a>
+      <a href="thesis.html"><span class="en">Theses</span><span class="de">Abschlussarbeiten</span></a>
+      <a href="index.html#contact"><span class="en">Contact</span><span class="de">Kontakt</span></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" id="lang-en" aria-pressed="true">EN</button>
+      <button type="button" id="lang-de" aria-pressed="false">DE</button>
+    </div>
+  </div>
+</header>
+<main id="top">
+<section class="tintro">
+  <div class="wrap">
+    <a class="back" href="index.html">&larr; Back to the main page</a><br>
+    <span class="label">Guide</span>
+    <h1 class="th1">How I built this site with AI, for free</h1>
+    <p class="lede">I am not a web developer. I built this portfolio together with Claude, an AI assistant. The AI wrote the code. I decided what goes on the site, supplied the work and checked every statement. This is the order I did it in, so you can do the same.</p>
+    <p class="only-de">Diese Seite gibt es nur auf Englisch.</p>
+    <div class="meta">
+      <div><span class="label">Running cost</span>Zero. No hosting fee, no domain.</div>
+      <div><span class="label">Time</span>A weekend for the website. Cleaning up my projects before that was the longer part.</div>
+      <div><span class="label">Tools</span>GitHub, GitHub Pages, an AI assistant</div>
+      <div><span class="label">Reading time</span>About five minutes</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap"><div class="tcol guide">
+
+    <h3 style="margin-top:0">Before you start</h3>
+    <p>Collect these first. The AI can only work with what you give it.</p>
+    <ul>
+      <li>A free GitHub account</li>
+      <li>An AI assistant that can work with files and code</li>
+      <li>Your CV and a good photo</li>
+      <li>Your project files: code, reports, images, results</li>
+      <li>One decision: who is the site for? Mine is for employers, PhD supervisors and people with a project.</li>
+    </ul>
+
+    <h3><span class="label step">Step 1</span>Fix your projects first, not the website</h3>
+    <p>I wanted to start with the website. That would have been a mistake. A portfolio site only points to your work, so the work has to be ready to be looked at.</p>
+    <p>For each project I made one GitHub repository with a short page that answers four questions:</p>
+    <ol>
+      <li>What is it, in one sentence?</li>
+      <li>What did I do, and with which tools?</li>
+      <li>What worked?</li>
+      <li>What did not work, and what would I not trust?</li>
+    </ol>
+    <p>The fourth question matters most. A page that also lists the failures is believed. A page with only successes is not.</p>
+    <div class="ex">Example: one of my projects found that a system was filling in values it had not found. I put that in the first lines of the page, not at the bottom.</div>
+
+    <h3><span class="label step">Step 2</span>Say what you do in one sentence</h3>
+    <p>My first idea was a list of skills. Nobody remembers a list. I wrote one sentence instead and put it at the top:</p>
+    <p class="pull">I solve data fragmentation in regulatory compliance, BIM, 2D/3D and digital twins of the built environment.</p>
+    <p>Then decide what to leave out. I left out older design work, because it sends visitors in a different direction. It now has its own page, one click away, for those who want it.</p>
+
+    <h3><span class="label step">Step 3</span>Build the site in a conversation</h3>
+    <p>I did not write a specification. The work went in small rounds:</p>
+    <ol>
+      <li>I describe what I want, in plain words.</li>
+      <li>The AI builds it and shows me.</li>
+      <li>I look at it and say what is wrong.</li>
+      <li>It corrects, and we repeat.</li>
+    </ol>
+    <p>Most of the value came from round three. Things I caught by looking:</p>
+    <ul>
+      <li>My portrait was stretched.</li>
+      <li>A photo edit was too strong and no longer looked like me.</li>
+      <li>The German CV ran onto a second page.</li>
+      <li>A new page existed but nobody could find it, because nothing visible linked to it.</li>
+      <li>A drawing was shown without its labels, which were the important part.</li>
+    </ul>
+    <p>None of these are code problems. They are things only you can see, because you know what the result should look like.</p>
+
+    <h3><span class="label step">Step 4</span>Publish for free</h3>
+    <p>GitHub can host a simple website at no cost. The service is called GitHub Pages. You create one repository with a special name, <code>yourname.github.io</code>, put the site files in it, and the site is online at that address a minute or two later.</p>
+    <p>I did not buy a domain. The free address works and looks fine on a CV. A domain can be added later without rebuilding anything.</p>
+
+    <h3><span class="label step">Step 5</span>Make the CV say the same things</h3>
+    <p>After the site, I rebuilt my CV in English and German from the same facts. Same numbers, same dates, same wording for each project. A reader who compares the CV, the site and GitHub should find no differences.</p>
+
+    <h3>What you must check yourself, always</h3>
+    <p>This is the part I would not skip.</p>
+    <div class="box">
+      <p><b>AI will describe your work better than it was.</b> My older profile texts claimed things my projects could not support. We went through every claim and removed or corrected each one that I could not defend in an interview.</p>
+      <p><b>Check every number, date and name.</b> If a figure is on the site, you should be able to say where it comes from.</p>
+      <p><b>Never publish passwords or keys.</b> In one of my code files we found an access key that I had typed in directly months earlier. I cancelled the key at the provider and removed it before the code went public.</p>
+      <p><b>Do not publish what is not yours.</b> Work done for an employer or a client usually belongs to them. The same goes for other people's maps, photos and documents.</p>
+      <p><b>Do not publish what you still need to protect.</b> For my thesis system I publish the method, the results and the failures, but not the source code.</p>
+    </div>
+
+    <h3>If you live in Germany</h3>
+    <ul>
+      <li><b>Impressum.</b> A site that is more than purely private needs one, with your name and a postal address.</li>
+      <li><b>Privacy text.</b> Say who hosts the site and what data is processed.</li>
+      <li><b>Visitor statistics without cookies.</b> I use a small statistics service that sets no cookies, so the site needs no cookie banner. I see totals, such as countries and pages, and no individual visitors.</li>
+      <li><b>Fonts.</b> I load the fonts from my own site, not from a third party.</li>
+    </ul>
+    <p class="note">This is what I did, not legal advice. If your site matters for your business, have these texts checked.</p>
+
+    <h3>What I would do differently</h3>
+    <ul>
+      <li><b>Start with the cleanup, and expect it to take longest.</b> The website was the quick part.</li>
+      <li><b>Give the AI the original files at the start.</b> Several corrections happened only because it first worked from my summaries, and a summary leaves things out.</li>
+      <li><b>Ask a native speaker to read the second language.</b> I have not done this yet for my German pages.</li>
+      <li><b>Stop when it is good enough.</b> A portfolio is a means. The time belongs to the applications it was built for.</li>
+    </ul>
+
+    <h3>Questions</h3>
+    <p>If you build your own and get stuck, write to me on <a href="https://www.linkedin.com/in/meetrehmann" data-goatcounter-click="linkedin">LinkedIn</a>. I am also glad to hear what you would change on <a href="index.html">this site</a>.</p>
+  </div></div>
+</section>
+</main>
+<footer>
+  <div class="wrap">
+    <span>© 2026 Abdul Rehman, Ulm</span>
+    <span><a href="index.html#impressum">Impressum</a> · <a href="index.html#privacy"><span class="en">Privacy</span><span class="de">Datenschutz</span></a> · <a href="how-i-built-this.html"><span class="en">How this site was built</span><span class="de">So entstand diese Website</span></a></span>
+    <span><span class="en">Geodata in project images: LGL, www.lgl-bw.de</span><span class="de">Geodaten in Projektbildern: LGL, www.lgl-bw.de</span></span>
+  </div>
+</footer>
+<script>
+(function(){
+  var root=document.documentElement, en=document.getElementById('lang-en'), de=document.getElementById('lang-de');
+  function set(l,save){
+    root.setAttribute('data-lang',l); root.setAttribute('lang',l);
+    en.setAttribute('aria-pressed',String(l==='en')); de.setAttribute('aria-pressed',String(l==='de'));
+    if(save){try{localStorage.setItem('lang',l)}catch(e){}}
+  }
+  var saved=null; try{saved=localStorage.getItem('lang')}catch(e){}
+  set(saved||((navigator.language||'en').toLowerCase().indexOf('de')===0?'de':'en'),false);
+  en.addEventListener('click',function(){set('en',true)});
+  de.addEventListener('click',function(){set('de',true)});
+})();
+</script>
+<script data-goatcounter="https://meet-rehman.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
