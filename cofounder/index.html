@@ -86,9 +86,28 @@ h3{font-family:var(--display);font-weight:680;font-stretch:108%;font-size:1.45re
 .role .own{font-size:.93rem;color:var(--muted);margin:0}
 .role .own b{color:var(--ink);font-weight:600}
 
-.offer{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:22px;font-size:.95rem;color:var(--muted)}
-.offer>span::before{content:"+ ";color:var(--accent);font-family:var(--mono)}
 
+.jumps{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.jumps a{font-family:var(--mono);font-size:.8rem;letter-spacing:.04em;text-decoration:none;border:1px solid var(--line);background:var(--sheet);padding:8px 12px;border-radius:3px;color:var(--ink)}
+.jumps a:hover{border-color:var(--accent);color:var(--accent)}
+.two-col{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(16px,4vw,48px)}
+.prose{max-width:var(--measure)}
+.facts-list{margin:6px 0 0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.facts-list li{padding:10px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.role .intro{margin:0;font-size:1rem}
+.block{display:flex;flex-direction:column;gap:6px}
+.block ul{font-size:.95rem}
+.profile{background:var(--wash);padding:12px 14px;border-left:3px solid var(--accent)}
+.profile p{margin:0;font-size:.95rem}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:24px}
+.grid3 .cell{background:var(--sheet);padding:18px 20px;min-width:0}
+.grid3 ul{margin:8px 0 0;padding-left:18px;font-size:.95rem}
+.grid3 li{margin-bottom:6px}
+.steps{list-style:none;counter-reset:s;padding:0;margin:22px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.steps li{counter-increment:s;background:var(--sheet);border:1px solid var(--line);padding:14px 16px;display:flex;flex-direction:column;gap:2px;font-size:.93rem;min-width:0}
+.steps li::before{content:"0" counter(s);font-family:var(--mono);font-size:.75rem;color:var(--accent)}
+.note{font-size:.88rem;color:var(--muted);margin-top:18px}
+section[id]{scroll-margin-top:72px}
 .contact{background:var(--wash)}
 .mail{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:6px 0 0}
 #mail-addr{font-family:var(--mono);font-size:1.08rem;font-weight:500;user-select:all;overflow-wrap:anywhere;min-width:0}
@@ -102,7 +121,7 @@ footer{border-top:1px solid var(--line);padding-block:22px;font-size:.84rem;colo
 footer .wrap{display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
 
 @media (max-width:860px){
-  .roles{grid-template-columns:minmax(0,1fr)}
+  .roles,.two-col,.grid3,.steps{grid-template-columns:minmax(0,1fr)}
   nav{order:3;width:100%;gap:14px}
 }
 @media (max-width:460px){
@@ -136,16 +155,39 @@ footer .wrap{display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
   <div class="wrap">
     <span class="label">GrundTruth · <span class="en">Co-founders wanted</span><span class="de">Mitgründung</span></span>
     <h1><span class="en">Looking for <em>two co-founders</em></span><span class="de">Gesucht: <em>zwei Mitgründer:innen</em></span></h1>
-    <p class="lede"><span class="en">GrundTruth answers German building-law questions with cited sources. The system is built; now it needs a team.</span><span class="de">GrundTruth beantwortet Fragen zum deutschen Baurecht mit Quellenangaben. Das System steht, jetzt fehlt das Team.</span></p>
+    <p class="lede"><span class="en">GrundTruth answers German building-law questions with cited sources. The system is built and validated with Stuttgart's building authorities; now it needs a founding team to become a company.</span><span class="de">GrundTruth beantwortet Fragen zum deutschen Baurecht mit Quellenangaben. Das System ist gebaut und mit Stuttgarter Baubehörden validiert; jetzt braucht es ein Gründungsteam, um ein Unternehmen zu werden.</span></p>
+    <div class="jumps">
+      <a href="#r-business"><span class="en">Business co-founder</span><span class="de">Business-Mitgründer:in</span> ↓</a>
+      <a href="#r-tech"><span class="en">Technical co-founder</span><span class="de">Technische:r Mitgründer:in</span> ↓</a>
+      <a href="#apply"><span class="en">How to apply</span><span class="de">Bewerbung</span> ↓</a>
+    </div>
   </div>
 </section>
 
-<section aria-label="Roles" style="padding-top:0;border-top:0">
+<section aria-labelledby="about-title">
+  <div class="wrap two-col">
+    <div>
+      <span class="label"><span class="en">The company</span><span class="de">Das Unternehmen</span></span>
+      <h2 id="about-title"><span class="en">What GrundTruth does</span><span class="de">Was GrundTruth macht</span></h2>
+    </div>
+    <div class="prose">
+      <p><span class="en">In Germany, a routine question about what may be built on a plot is split across federal law (BauGB, BauNVO), state law (LBO BW) and the municipal development plan, and often across several city offices. Answers can take weeks.</span><span class="de">In Deutschland verteilt sich eine einfache Frage, was auf einem Grundstück gebaut werden darf, auf Bundesrecht (BauGB, BauNVO), Landesrecht (LBO BW) und den Bebauungsplan, oft auch auf mehrere Ämter. Antworten dauern Wochen.</span></p>
+      <p><span class="en">GrundTruth reads the law, the development plan image and the cadastral record together and returns an answer with its sources. First users: municipal building authorities, planning offices, architects and real-estate firms.</span><span class="de">GrundTruth liest Gesetzestext, Bebauungsplan und Liegenschaftskataster gemeinsam und liefert eine Antwort mit Quellen. Erste Zielgruppen: Baurechtsämter, Planungsämter, Architekturbüros und Immobilienunternehmen.</span></p>
+      <ul class="facts-list">
+        <li><b><span class="en">Built:</span><span class="de">Gebaut:</span></b> <span class="en">a working multi-agent system with text, plan-vision and cadastre layers</span><span class="de">ein funktionierendes Multi-Agenten-System mit Text-, Plan- und Katasterebene</span></li>
+        <li><b><span class="en">Validated:</span><span class="de">Validiert:</span></b> <span class="en">with Baurechtsamt and Stadtplanungsamt Stuttgart and a building-law expert</span><span class="de">mit Baurechtsamt und Stadtplanungsamt Stuttgart sowie einem Baurechtsexperten</span></li>
+        <li><b><span class="en">Stage:</span><span class="de">Phase:</span></b> <span class="en">pre-seed; EXIST start-up grant application in preparation</span><span class="de">Pre-Seed; Antrag auf EXIST-Gründungsstipendium in Vorbereitung</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section aria-label="Roles">
   <div class="wrap">
     <div class="roles">
-      <article class="role" aria-labelledby="r-business">
+      <article class="role" id="r-business" aria-labelledby="h-business">
         <div class="head">
-          <h3 id="r-business"><span class="en">Business co-founder</span><span class="de">Business-Mitgründer:in</span></h3>
+          <h3 id="h-business"><span class="en">Business co-founder</span><span class="de">Business-Mitgründer:in</span></h3>
           <span class="pill solid"><span class="en">Priority</span><span class="de">Priorität</span></span>
         </div>
         <div class="stamp">
@@ -155,19 +197,37 @@ footer .wrap{display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
           <div><span class="label"><span class="en">Stake</span><span class="de">Anteil</span></span><b>Equity</b></div>
         </div>
         <div class="body">
-          <span class="label"><span class="en">One or more of</span><span class="de">Eines oder mehreres</span></span>
+          <p class="intro"><span class="en">You take GrundTruth to the people who need it. I bring the product and the domain; you lead the market side and shape the company with me.</span><span class="de">Sie bringen GrundTruth zu den Menschen, die es brauchen. Ich bringe Produkt und Fachwissen mit; Sie führen die Marktseite und gestalten das Unternehmen mit.</span></p>
+          <div class="block"><span class="label"><span class="en">What you will do</span><span class="de">Ihre Aufgaben</span></span>
           <ul>
-            <li><span class="en">Public-sector or GovTech sales, ideally to municipalities</span><span class="de">Vertrieb an Kommunen oder im GovTech-Bereich</span></li>
-            <li><span class="en">Startup, grant or fundraising experience (EXIST)</span><span class="de">Erfahrung mit Gründung, Förderung oder Finanzierung (EXIST)</span></li>
-            <li><span class="en">Building or planning law, real estate or AEC knowledge</span><span class="de">Kenntnisse im Bau- und Planungsrecht, Immobilien oder AEC</span></li>
-          </ul>
-          <p class="own"><b><span class="en">You own:</span><span class="de">Verantwortung:</span></b> <span class="en">customers and pilots, business plan and funding.</span><span class="de">Kund:innen und Pilotprojekte, Businessplan und Finanzierung.</span></p>
+            <li><span class="en">Win the first pilots with municipalities, planning offices and AEC firms</span><span class="de">Erste Pilotprojekte mit Kommunen, Planungsämtern und AEC-Unternehmen gewinnen</span></li>
+            <li><span class="en">Run customer discovery and secure letters of intent</span><span class="de">Kundengespräche führen und Absichtserklärungen (LOI) einholen</span></li>
+            <li><span class="en">Own the business plan, pricing and the EXIST application</span><span class="de">Businessplan, Preismodell und EXIST-Antrag verantworten</span></li>
+            <li><span class="en">Set up the company (UG / GmbH), contracts and finance</span><span class="de">Gründung (UG / GmbH), Verträge und Finanzen aufsetzen</span></li>
+            <li><span class="en">Navigate public procurement and later raise funding</span><span class="de">Öffentliche Vergabe navigieren und später Finanzierung einwerben</span></li>
+          </ul></div>
+          <div class="block"><span class="label"><span class="en">Must have</span><span class="de">Muss</span></span>
+          <ul>
+            <li><span class="en">German at native or business-fluent level (C1+); talks with Bauämter happen in German</span><span class="de">Deutsch auf Muttersprach- oder Verhandlungsniveau (C1+); Gespräche mit Bauämtern laufen auf Deutsch</span></li>
+            <li><span class="en">Good English for working together day to day</span><span class="de">Gutes Englisch für die tägliche Zusammenarbeit</span></li>
+            <li><span class="en">Experience in sales, business development or consulting</span><span class="de">Erfahrung in Vertrieb, Business Development oder Beratung</span></li>
+            <li><span class="en">Able to commit full-time and based in Germany</span><span class="de">Vollzeit verfügbar und in Deutschland ansässig</span></li>
+          </ul></div>
+          <div class="block"><span class="label"><span class="en">Nice to have</span><span class="de">Wünschenswert</span></span>
+          <ul>
+            <li><span class="en">Selling to the public sector or GovTech</span><span class="de">Vertrieb an den öffentlichen Sektor oder GovTech</span></li>
+            <li><span class="en">Startup, grant or fundraising experience</span><span class="de">Erfahrung mit Gründung, Förderung oder Finanzierung</span></li>
+            <li><span class="en">Background in building or planning law, real estate, architecture or engineering</span><span class="de">Hintergrund in Bau- oder Planungsrecht, Immobilien, Architektur oder Ingenieurwesen</span></li>
+            <li><span class="en">Network in Baden-Württemberg's public sector or AEC industry</span><span class="de">Netzwerk im öffentlichen Sektor oder der Bauwirtschaft in Baden-Württemberg</span></li>
+          </ul></div>
+          <div class="block profile"><span class="label"><span class="en">You are someone who</span><span class="de">Sie sind jemand, der</span></span>
+            <p><span class="en">enjoys talking to customers, is comfortable in a town hall as well as a pitch, turns feedback into decisions, and cares about making public services work better.</span><span class="de">gern mit Kund:innen spricht, sich im Rathaus wie im Pitch wohlfühlt, Feedback in Entscheidungen übersetzt und öffentliche Verwaltung besser machen will.</span></p></div>
         </div>
       </article>
 
-      <article class="role" aria-labelledby="r-tech">
+      <article class="role" id="r-tech" aria-labelledby="h-tech">
         <div class="head">
-          <h3 id="r-tech"><span class="en">Technical co-founder</span><span class="de">Technische:r Mitgründer:in</span></h3>
+          <h3 id="h-tech"><span class="en">Technical co-founder</span><span class="de">Technische:r Mitgründer:in</span></h3>
           <span class="pill"><span class="en">Second seat</span><span class="de">Zweite Rolle</span></span>
         </div>
         <div class="stamp">
@@ -177,35 +237,85 @@ footer .wrap{display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
           <div><span class="label"><span class="en">Stake</span><span class="de">Anteil</span></span><b>Equity</b></div>
         </div>
         <div class="body">
-          <span class="label"><span class="en">One or more of</span><span class="de">Eines oder mehreres</span></span>
+          <p class="intro"><span class="en">You turn a validated research system into a product that city offices can trust and run, including on their own hardware. We build it side by side.</span><span class="de">Sie machen aus einem validierten Forschungssystem ein Produkt, dem Ämter vertrauen und das sie auch auf eigener Hardware betreiben können. Wir bauen es gemeinsam.</span></p>
+          <div class="block"><span class="label"><span class="en">What you will do</span><span class="de">Ihre Aufgaben</span></span>
           <ul>
-            <li><span class="en">Python and production ML: LLMs, retrieval, evaluation</span><span class="de">Python und produktives ML: LLMs, Retrieval, Evaluation</span></li>
-            <li><span class="en">Data engineering, ideally geodata (GIS, ALKIS, XPlanung)</span><span class="de">Data Engineering, idealerweise Geodaten (GIS, ALKIS, XPlanung)</span></li>
-            <li><span class="en">Secure deployment: GDPR, open models on own hardware</span><span class="de">Sicherer Betrieb: DSGVO, offene Modelle auf eigener Hardware</span></li>
-          </ul>
-          <p class="own"><b><span class="en">You own:</span><span class="de">Verantwortung:</span></b> <span class="en">production architecture, data pipelines, security.</span><span class="de">Produktionsarchitektur, Datenpipelines, Sicherheit.</span></p>
+            <li><span class="en">Move the prototype to a reliable production architecture</span><span class="de">Den Prototyp in eine stabile Produktionsarchitektur überführen</span></li>
+            <li><span class="en">Build data pipelines for law texts, plans and geodata</span><span class="de">Datenpipelines für Gesetzestexte, Pläne und Geodaten aufbauen</span></li>
+            <li><span class="en">Set up evaluation, monitoring and quality checks</span><span class="de">Evaluation, Monitoring und Qualitätsprüfung aufsetzen</span></li>
+            <li><span class="en">Make it GDPR-compliant and runnable with open models on-premises</span><span class="de">DSGVO-konform machen und mit offenen Modellen lokal betreibbar</span></li>
+          </ul></div>
+          <div class="block"><span class="label"><span class="en">Must have</span><span class="de">Muss</span></span>
+          <ul>
+            <li><span class="en">German at B2 or above, to work with German regulations and authority teams</span><span class="de">Deutsch ab B2, für deutsche Vorschriften und die Arbeit mit Behörden</span></li>
+            <li><span class="en">Strong Python and experience shipping software to production</span><span class="de">Sehr gutes Python und Erfahrung mit produktiver Software</span></li>
+            <li><span class="en">Hands-on work with LLMs, retrieval (RAG) or ML pipelines</span><span class="de">Praktische Erfahrung mit LLMs, Retrieval (RAG) oder ML-Pipelines</span></li>
+            <li><span class="en">Able to commit full-time and based in Germany</span><span class="de">Vollzeit verfügbar und in Deutschland ansässig</span></li>
+          </ul></div>
+          <div class="block"><span class="label"><span class="en">Nice to have</span><span class="de">Wünschenswert</span></span>
+          <ul>
+            <li><span class="en">Geodata: GIS, ALKIS, XPlanung, OGC APIs</span><span class="de">Geodaten: GIS, ALKIS, XPlanung, OGC-APIs</span></li>
+            <li><span class="en">Computer vision or document AI (OCR, layout detection)</span><span class="de">Computer Vision oder Document AI (OCR, Layout-Erkennung)</span></li>
+            <li><span class="en">Cloud and on-premises deployment, security, DevOps</span><span class="de">Cloud- und On-Premises-Betrieb, Sicherheit, DevOps</span></li>
+            <li><span class="en">Experience in GovTech or regulated industries</span><span class="de">Erfahrung in GovTech oder regulierten Branchen</span></li>
+          </ul></div>
+          <div class="block profile"><span class="label"><span class="en">You are someone who</span><span class="de">Sie sind jemand, der</span></span>
+            <p><span class="en">likes building things that work in the real world, cares about reliability more than demos, and wants AI that can say "I don't know" instead of guessing.</span><span class="de">gern Dinge baut, die in der Praxis funktionieren, Zuverlässigkeit wichtiger findet als Demos und KI will, die "weiß ich nicht" sagt, statt zu raten.</span></p></div>
         </div>
       </article>
-    </div>
-
-    <div class="offer">
-      <span><span class="en">Co-founder equity, agreed openly</span><span class="de">Gründungsanteile, offen vereinbart</span></span>
-      <span><span class="en">EXIST start-up grant application in preparation</span><span class="de">Antrag auf EXIST-Gründungsstipendium in Vorbereitung</span></span>
-      <span><span class="en">A working, validated product from day one</span><span class="de">Ein funktionierendes, validiertes Produkt ab Tag eins</span></span>
     </div>
   </div>
 </section>
 
-<section class="contact" aria-labelledby="c-title">
+<section aria-labelledby="offer-title">
   <div class="wrap">
-    <span class="label"><span class="en">Get in touch</span><span class="de">Kontakt</span></span>
+    <span class="label"><span class="en">Working together</span><span class="de">Zusammenarbeit</span></span>
+    <h2 id="offer-title"><span class="en">What you get, and what I bring</span><span class="de">Was Sie bekommen, und was ich mitbringe</span></h2>
+    <div class="grid3">
+      <div class="cell">
+        <span class="label"><span class="en">On offer</span><span class="de">Angebot</span></span>
+        <ul>
+          <li><span class="en">Co-founder equity, agreed openly between us</span><span class="de">Gründungsanteile, offen miteinander vereinbart</span></li>
+          <li><span class="en">If EXIST is approved: 12 months of stipend and project budget</span><span class="de">Bei EXIST-Zusage: 12 Monate Stipendium und Projektbudget</span></li>
+          <li><span class="en">Coaching through HfWU's start-up network</span><span class="de">Coaching über das Gründungsnetzwerk der HfWU</span></li>
+        </ul>
+      </div>
+      <div class="cell">
+        <span class="label"><span class="en">What I bring</span><span class="de">Was ich mitbringe</span></span>
+        <ul>
+          <li><span class="en">Architect turned AI engineer; built the full system</span><span class="de">Architekt und KI-Ingenieur; habe das gesamte System gebaut</span></li>
+          <li><span class="en">Three years of architectural practice and business development</span><span class="de">Drei Jahre Architekturpraxis und Business Development</span></li>
+          <li><span class="en">Working contacts with Stuttgart building and planning offices</span><span class="de">Kontakte zu Stuttgarter Bau- und Planungsämtern</span></li>
+        </ul>
+      </div>
+      <div class="cell">
+        <span class="label"><span class="en">Practical</span><span class="de">Rahmen</span></span>
+        <ul>
+          <li><span class="en">Base: Baden-Württemberg (Stuttgart / Ulm area), hybrid work possible</span><span class="de">Standort: Baden-Württemberg (Raum Stuttgart / Ulm), hybrid möglich</span></li>
+          <li><span class="en">Start: early 2027, flexible</span><span class="de">Start: Anfang 2027, flexibel</span></li>
+          <li><span class="en">Students and recent graduates welcome</span><span class="de">Studierende und Absolvent:innen willkommen</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="apply" class="contact" aria-labelledby="c-title">
+  <div class="wrap">
+    <span class="label"><span class="en">How to apply</span><span class="de">Bewerbung</span></span>
     <h2 id="c-title"><span class="en">Send a short note: who you are, which role, and why this problem.</span><span class="de">Schreiben Sie mir kurz: wer Sie sind, welche Rolle und warum dieses Thema.</span></h2>
-    <p class="mail" style="margin-top:16px"><span id="mail-addr">meet.archrehman@gmail.com</span><button type="button" id="mail-copy" class="copy" data-goatcounter-click="cofounder-email-copy"><span class="en">Copy</span><span class="de">Kopieren</span></button><span id="mail-done" class="label" role="status" aria-live="polite"></span></p>
+    <ol class="steps">
+      <li><b><span class="en">Short note</span><span class="de">Kurze Nachricht</span></b><span><span class="en">Email or LinkedIn, with your CV or profile</span><span class="de">E-Mail oder LinkedIn, mit Lebenslauf oder Profil</span></span></li>
+      <li><b><span class="en">First call</span><span class="de">Erstes Gespräch</span></b><span><span class="en">30 minutes to get to know each other</span><span class="de">30 Minuten zum Kennenlernen</span></span></li>
+      <li><b><span class="en">Work together</span><span class="de">Zusammenarbeiten</span></b><span><span class="en">A small joint task or pilot meeting before deciding</span><span class="de">Eine kleine gemeinsame Aufgabe oder ein Pilottermin vor der Entscheidung</span></span></li>
+    </ol>
+    <p class="mail" style="margin-top:20px"><span id="mail-addr">meet.archrehman@gmail.com</span><button type="button" id="mail-copy" class="copy" data-goatcounter-click="cofounder-email-copy"><span class="en">Copy</span><span class="de">Kopieren</span></button><span id="mail-done" class="label" role="status" aria-live="polite"></span></p>
     <p class="phone">+49 178 2946260</p>
     <div class="links">
       <a class="btn solid" href="https://www.linkedin.com/in/meetrehmann" data-goatcounter-click="cofounder-linkedin">LinkedIn</a>
       <a class="btn ghost" href="../index.html#work"><span class="en">See the work</span><span class="de">Zu den Projekten</span></a>
     </div>
+    <p class="note"><span class="en">Technical details of the system are shared in conversation.</span><span class="de">Technische Details zum System teile ich im Gespräch.</span></p>
   </div>
 </section>
 </main>
